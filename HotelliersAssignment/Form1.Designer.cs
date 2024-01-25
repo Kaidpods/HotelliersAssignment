@@ -1,4 +1,6 @@
-﻿namespace HotelliersAssignment
+﻿using System;
+
+namespace HotelliersAssignment
 {
     partial class Hoteliers
     {
@@ -38,22 +40,59 @@
             this.staffLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffTab = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.usernameError = new System.Windows.Forms.ErrorProvider(this.components);
-            this.passwordError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.BookingTab = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dropDownPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dropRoomBtn = new System.Windows.Forms.Button();
+            this.RoomLbl = new System.Windows.Forms.Label();
+            this.IncDRoom = new System.Windows.Forms.Button();
+            this.RoomTxt = new System.Windows.Forms.TextBox();
+            this.IncARoom = new System.Windows.Forms.Button();
+            this.AdultsLbl = new System.Windows.Forms.Label();
+            this.IncDAdult = new System.Windows.Forms.Button();
+            this.AdultTxt = new System.Windows.Forms.TextBox();
+            this.IncAAdult = new System.Windows.Forms.Button();
+            this.ChildrenLbl = new System.Windows.Forms.Label();
+            this.IncDChild = new System.Windows.Forms.Button();
+            this.ChildTxt = new System.Windows.Forms.TextBox();
+            this.IncAChild = new System.Windows.Forms.Button();
+            this.InfantLbl = new System.Windows.Forms.Label();
+            this.IncDInfants = new System.Windows.Forms.Button();
+            this.InfantTxt = new System.Windows.Forms.TextBox();
+            this.IncAInfant = new System.Windows.Forms.Button();
+            this.EndDateLbl = new System.Windows.Forms.Label();
+            this.StartDateLbl = new System.Windows.Forms.Label();
+            this.BookEndDate = new System.Windows.Forms.DateTimePicker();
+            this.BookStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.PrefIDLbl = new System.Windows.Forms.Label();
+            this.PrefIDTxt = new System.Windows.Forms.TextBox();
+            this.HotelLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.UsernameErr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PasswordErr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.StartDateErr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.EndDateErr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.DropTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.StaffLogTab.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usernameError)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.passwordError)).BeginInit();
+            this.BookingTab.SuspendLayout();
+            this.dropDownPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UsernameErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.StaffLogTab);
             this.tabControl1.Controls.Add(this.StaffTab);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.BookingTab);
             this.tabControl1.Location = new System.Drawing.Point(2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -135,23 +174,368 @@
             this.StaffTab.TabIndex = 1;
             this.StaffTab.Text = "Staff";
             // 
-            // tabPage1
+            // BookingTab
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(206)))), ((int)(((byte)(168)))));
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(790, 420);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Booking";
+            this.BookingTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(206)))), ((int)(((byte)(168)))));
+            this.BookingTab.Controls.Add(this.label6);
+            this.BookingTab.Controls.Add(this.dropDownPanel);
+            this.BookingTab.Controls.Add(this.EndDateLbl);
+            this.BookingTab.Controls.Add(this.StartDateLbl);
+            this.BookingTab.Controls.Add(this.BookEndDate);
+            this.BookingTab.Controls.Add(this.BookStartDate);
+            this.BookingTab.Controls.Add(this.label3);
+            this.BookingTab.Controls.Add(this.PrefIDLbl);
+            this.BookingTab.Controls.Add(this.PrefIDTxt);
+            this.BookingTab.Controls.Add(this.HotelLbl);
+            this.BookingTab.Controls.Add(this.label2);
+            this.BookingTab.Controls.Add(this.label4);
+            this.BookingTab.Controls.Add(this.label5);
+            this.BookingTab.Location = new System.Drawing.Point(4, 22);
+            this.BookingTab.Name = "BookingTab";
+            this.BookingTab.Size = new System.Drawing.Size(790, 420);
+            this.BookingTab.TabIndex = 2;
+            this.BookingTab.Text = "Booking";
             // 
-            // usernameError
+            // label6
             // 
-            this.usernameError.ContainerControl = this;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
+            this.label6.Location = new System.Drawing.Point(-1, 202);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(395, 2);
+            this.label6.TabIndex = 13;
             // 
-            // passwordError
+            // dropDownPanel
             // 
-            this.passwordError.ContainerControl = this;
+            this.dropDownPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(186)))), ((int)(((byte)(175)))));
+            this.dropDownPanel.Controls.Add(this.panel1);
+            this.dropDownPanel.Controls.Add(this.RoomLbl);
+            this.dropDownPanel.Controls.Add(this.IncDRoom);
+            this.dropDownPanel.Controls.Add(this.RoomTxt);
+            this.dropDownPanel.Controls.Add(this.IncARoom);
+            this.dropDownPanel.Controls.Add(this.AdultsLbl);
+            this.dropDownPanel.Controls.Add(this.IncDAdult);
+            this.dropDownPanel.Controls.Add(this.AdultTxt);
+            this.dropDownPanel.Controls.Add(this.IncAAdult);
+            this.dropDownPanel.Controls.Add(this.ChildrenLbl);
+            this.dropDownPanel.Controls.Add(this.IncDChild);
+            this.dropDownPanel.Controls.Add(this.ChildTxt);
+            this.dropDownPanel.Controls.Add(this.IncAChild);
+            this.dropDownPanel.Controls.Add(this.InfantLbl);
+            this.dropDownPanel.Controls.Add(this.IncDInfants);
+            this.dropDownPanel.Controls.Add(this.InfantTxt);
+            this.dropDownPanel.Controls.Add(this.IncAInfant);
+            this.dropDownPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.dropDownPanel.Location = new System.Drawing.Point(188, 213);
+            this.dropDownPanel.MaximumSize = new System.Drawing.Size(200, 201);
+            this.dropDownPanel.MinimumSize = new System.Drawing.Size(200, 30);
+            this.dropDownPanel.Name = "dropDownPanel";
+            this.dropDownPanel.Size = new System.Drawing.Size(200, 201);
+            this.dropDownPanel.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dropRoomBtn);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 30);
+            this.panel1.TabIndex = 0;
+            // 
+            // dropRoomBtn
+            // 
+            this.dropRoomBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(170)))), ((int)(((byte)(157)))));
+            this.dropRoomBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dropRoomBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dropRoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("dropRoomBtn.Image")));
+            this.dropRoomBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dropRoomBtn.Location = new System.Drawing.Point(0, 0);
+            this.dropRoomBtn.Name = "dropRoomBtn";
+            this.dropRoomBtn.Size = new System.Drawing.Size(200, 30);
+            this.dropRoomBtn.TabIndex = 13;
+            this.dropRoomBtn.Text = "TEMP";
+            this.dropRoomBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dropRoomBtn.UseVisualStyleBackColor = false;
+            this.dropRoomBtn.Click += new System.EventHandler(this.dropRoomBtn_Click);
+            // 
+            // RoomLbl
+            // 
+            this.RoomLbl.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RoomLbl.Location = new System.Drawing.Point(3, 33);
+            this.RoomLbl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 17);
+            this.RoomLbl.Name = "RoomLbl";
+            this.RoomLbl.Size = new System.Drawing.Size(72, 28);
+            this.RoomLbl.TabIndex = 1;
+            this.RoomLbl.Text = "Rooms";
+            this.RoomLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IncDRoom
+            // 
+            this.IncDRoom.BackColor = System.Drawing.Color.White;
+            this.IncDRoom.BackgroundImage = global::HotelliersAssignment.Properties.Resources.icons8_minus_24;
+            this.IncDRoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncDRoom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncDRoom.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.IncDRoom.Location = new System.Drawing.Point(98, 33);
+            this.IncDRoom.Margin = new System.Windows.Forms.Padding(20, 3, 0, 0);
+            this.IncDRoom.Name = "IncDRoom";
+            this.IncDRoom.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDRoom.Size = new System.Drawing.Size(31, 29);
+            this.IncDRoom.TabIndex = 2;
+            this.IncDRoom.UseVisualStyleBackColor = false;
+            // 
+            // RoomTxt
+            // 
+            this.RoomTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RoomTxt.Location = new System.Drawing.Point(129, 33);
+            this.RoomTxt.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.RoomTxt.Name = "RoomTxt";
+            this.RoomTxt.Size = new System.Drawing.Size(28, 29);
+            this.RoomTxt.TabIndex = 3;
+            this.RoomTxt.Text = "0";
+            this.RoomTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IncARoom
+            // 
+            this.IncARoom.BackColor = System.Drawing.Color.White;
+            this.IncARoom.BackgroundImage = global::HotelliersAssignment.Properties.Resources.icons8_plus_24;
+            this.IncARoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncARoom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncARoom.Location = new System.Drawing.Point(157, 33);
+            this.IncARoom.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.IncARoom.Name = "IncARoom";
+            this.IncARoom.Size = new System.Drawing.Size(31, 29);
+            this.IncARoom.TabIndex = 4;
+            this.IncARoom.UseVisualStyleBackColor = false;
+            this.IncARoom.Click += new System.EventHandler(this.IncARoom_Click);
+            // 
+            // AdultsLbl
+            // 
+            this.AdultsLbl.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdultsLbl.Location = new System.Drawing.Point(3, 78);
+            this.AdultsLbl.Margin = new System.Windows.Forms.Padding(3, 0, 3, 17);
+            this.AdultsLbl.Name = "AdultsLbl";
+            this.AdultsLbl.Size = new System.Drawing.Size(72, 28);
+            this.AdultsLbl.TabIndex = 5;
+            this.AdultsLbl.Text = "Adults";
+            this.AdultsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IncDAdult
+            // 
+            this.IncDAdult.BackColor = System.Drawing.Color.White;
+            this.IncDAdult.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncDAdult.BackgroundImage")));
+            this.IncDAdult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncDAdult.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncDAdult.Location = new System.Drawing.Point(98, 78);
+            this.IncDAdult.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDAdult.Name = "IncDAdult";
+            this.IncDAdult.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDAdult.Size = new System.Drawing.Size(31, 29);
+            this.IncDAdult.TabIndex = 6;
+            this.IncDAdult.UseVisualStyleBackColor = false;
+            // 
+            // AdultTxt
+            // 
+            this.AdultTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdultTxt.Location = new System.Drawing.Point(129, 78);
+            this.AdultTxt.Margin = new System.Windows.Forms.Padding(0);
+            this.AdultTxt.Name = "AdultTxt";
+            this.AdultTxt.Size = new System.Drawing.Size(28, 29);
+            this.AdultTxt.TabIndex = 7;
+            this.AdultTxt.Text = "0";
+            this.AdultTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IncAAdult
+            // 
+            this.IncAAdult.BackColor = System.Drawing.Color.White;
+            this.IncAAdult.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncAAdult.BackgroundImage")));
+            this.IncAAdult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncAAdult.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncAAdult.Location = new System.Drawing.Point(157, 78);
+            this.IncAAdult.Margin = new System.Windows.Forms.Padding(0);
+            this.IncAAdult.Name = "IncAAdult";
+            this.IncAAdult.Size = new System.Drawing.Size(31, 29);
+            this.IncAAdult.TabIndex = 8;
+            this.IncAAdult.UseVisualStyleBackColor = false;
+            this.IncAAdult.Click += new System.EventHandler(this.IncAAdult_Click);
+            // 
+            // ChildrenLbl
+            // 
+            this.ChildrenLbl.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChildrenLbl.Location = new System.Drawing.Point(3, 123);
+            this.ChildrenLbl.Margin = new System.Windows.Forms.Padding(3, 0, 3, 17);
+            this.ChildrenLbl.Name = "ChildrenLbl";
+            this.ChildrenLbl.Size = new System.Drawing.Size(72, 28);
+            this.ChildrenLbl.TabIndex = 9;
+            this.ChildrenLbl.Text = "Childs";
+            this.ChildrenLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IncDChild
+            // 
+            this.IncDChild.BackColor = System.Drawing.Color.White;
+            this.IncDChild.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncDChild.BackgroundImage")));
+            this.IncDChild.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncDChild.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncDChild.Location = new System.Drawing.Point(98, 123);
+            this.IncDChild.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDChild.Name = "IncDChild";
+            this.IncDChild.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDChild.Size = new System.Drawing.Size(31, 29);
+            this.IncDChild.TabIndex = 10;
+            this.IncDChild.UseVisualStyleBackColor = false;
+            // 
+            // ChildTxt
+            // 
+            this.ChildTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChildTxt.Location = new System.Drawing.Point(129, 123);
+            this.ChildTxt.Margin = new System.Windows.Forms.Padding(0);
+            this.ChildTxt.Name = "ChildTxt";
+            this.ChildTxt.Size = new System.Drawing.Size(28, 29);
+            this.ChildTxt.TabIndex = 11;
+            this.ChildTxt.Text = "0";
+            this.ChildTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IncAChild
+            // 
+            this.IncAChild.BackColor = System.Drawing.Color.White;
+            this.IncAChild.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncAChild.BackgroundImage")));
+            this.IncAChild.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncAChild.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncAChild.Location = new System.Drawing.Point(157, 123);
+            this.IncAChild.Margin = new System.Windows.Forms.Padding(0);
+            this.IncAChild.Name = "IncAChild";
+            this.IncAChild.Size = new System.Drawing.Size(31, 29);
+            this.IncAChild.TabIndex = 12;
+            this.IncAChild.UseVisualStyleBackColor = false;
+            this.IncAChild.Click += new System.EventHandler(this.IncAChild_Click);
+            // 
+            // InfantLbl
+            // 
+            this.InfantLbl.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfantLbl.Location = new System.Drawing.Point(3, 168);
+            this.InfantLbl.Margin = new System.Windows.Forms.Padding(3, 0, 3, 17);
+            this.InfantLbl.Name = "InfantLbl";
+            this.InfantLbl.Size = new System.Drawing.Size(72, 28);
+            this.InfantLbl.TabIndex = 13;
+            this.InfantLbl.Text = "Infants";
+            this.InfantLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IncDInfants
+            // 
+            this.IncDInfants.BackColor = System.Drawing.Color.White;
+            this.IncDInfants.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncDInfants.BackgroundImage")));
+            this.IncDInfants.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncDInfants.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncDInfants.Location = new System.Drawing.Point(98, 168);
+            this.IncDInfants.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDInfants.Name = "IncDInfants";
+            this.IncDInfants.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.IncDInfants.Size = new System.Drawing.Size(31, 29);
+            this.IncDInfants.TabIndex = 14;
+            this.IncDInfants.UseVisualStyleBackColor = false;
+            // 
+            // InfantTxt
+            // 
+            this.InfantTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfantTxt.Location = new System.Drawing.Point(129, 168);
+            this.InfantTxt.Margin = new System.Windows.Forms.Padding(0);
+            this.InfantTxt.Name = "InfantTxt";
+            this.InfantTxt.Size = new System.Drawing.Size(28, 29);
+            this.InfantTxt.TabIndex = 15;
+            this.InfantTxt.Text = "0";
+            this.InfantTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IncAInfant
+            // 
+            this.IncAInfant.BackColor = System.Drawing.Color.White;
+            this.IncAInfant.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IncAInfant.BackgroundImage")));
+            this.IncAInfant.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IncAInfant.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IncAInfant.Location = new System.Drawing.Point(157, 168);
+            this.IncAInfant.Margin = new System.Windows.Forms.Padding(0);
+            this.IncAInfant.Name = "IncAInfant";
+            this.IncAInfant.Size = new System.Drawing.Size(31, 29);
+            this.IncAInfant.TabIndex = 16;
+            this.IncAInfant.UseVisualStyleBackColor = false;
+            this.IncAInfant.Click += new System.EventHandler(this.IncAInfant_Click);
+            // 
+            // EndDateLbl
+            // 
+            this.EndDateLbl.AutoSize = true;
+            this.EndDateLbl.BackColor = System.Drawing.Color.Transparent;
+            this.EndDateLbl.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EndDateLbl.Location = new System.Drawing.Point(8, 163);
+            this.EndDateLbl.Name = "EndDateLbl";
+            this.EndDateLbl.Size = new System.Drawing.Size(91, 21);
+            this.EndDateLbl.TabIndex = 11;
+            this.EndDateLbl.Text = "End Date:";
+            // 
+            // StartDateLbl
+            // 
+            this.StartDateLbl.AutoSize = true;
+            this.StartDateLbl.BackColor = System.Drawing.Color.Transparent;
+            this.StartDateLbl.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartDateLbl.Location = new System.Drawing.Point(8, 115);
+            this.StartDateLbl.Name = "StartDateLbl";
+            this.StartDateLbl.Size = new System.Drawing.Size(109, 21);
+            this.StartDateLbl.TabIndex = 10;
+            this.StartDateLbl.Text = "Start Date:";
+            // 
+            // BookEndDate
+            // 
+            this.BookEndDate.Checked = false;
+            this.BookEndDate.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookEndDate.Location = new System.Drawing.Point(188, 159);
+            this.BookEndDate.Name = "BookEndDate";
+            this.BookEndDate.Size = new System.Drawing.Size(200, 26);
+            this.BookEndDate.TabIndex = 9;
+            this.BookEndDate.Value = new System.DateTime(2024, 1, 24, 22, 55, 19, 0);
+            // 
+            // BookStartDate
+            // 
+            this.BookStartDate.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookStartDate.Location = new System.Drawing.Point(188, 111);
+            this.BookStartDate.MinDate = new System.DateTime(2024, 1, 24, 0, 0, 0, 0);
+            this.BookStartDate.Name = "BookStartDate";
+            this.BookStartDate.Size = new System.Drawing.Size(200, 26);
+            this.BookStartDate.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
+            this.label3.Location = new System.Drawing.Point(-1, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(395, 2);
+            this.label3.TabIndex = 6;
+            // 
+            // PrefIDLbl
+            // 
+            this.PrefIDLbl.AutoSize = true;
+            this.PrefIDLbl.BackColor = System.Drawing.Color.Transparent;
+            this.PrefIDLbl.Font = new System.Drawing.Font("Cascadia Code", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrefIDLbl.Location = new System.Drawing.Point(5, 58);
+            this.PrefIDLbl.Name = "PrefIDLbl";
+            this.PrefIDLbl.Size = new System.Drawing.Size(188, 25);
+            this.PrefIDLbl.TabIndex = 5;
+            this.PrefIDLbl.Text = "Preferential ID:";
+            // 
+            // PrefIDTxt
+            // 
+            this.PrefIDTxt.Font = new System.Drawing.Font("Cascadia Code", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrefIDTxt.Location = new System.Drawing.Point(211, 55);
+            this.PrefIDTxt.Name = "PrefIDTxt";
+            this.PrefIDTxt.Size = new System.Drawing.Size(177, 30);
+            this.PrefIDTxt.TabIndex = 4;
+            // 
+            // HotelLbl
+            // 
+            this.HotelLbl.AutoSize = true;
+            this.HotelLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(189)))), ((int)(((byte)(137)))));
+            this.HotelLbl.Font = new System.Drawing.Font("Cascadia Code", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HotelLbl.Location = new System.Drawing.Point(4, 4);
+            this.HotelLbl.Name = "HotelLbl";
+            this.HotelLbl.Size = new System.Drawing.Size(127, 35);
+            this.HotelLbl.TabIndex = 1;
+            this.HotelLbl.Text = "Hotel: ";
             // 
             // label2
             // 
@@ -160,6 +544,43 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(3, 420);
             this.label2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(189)))), ((int)(((byte)(137)))));
+            this.label4.Location = new System.Drawing.Point(2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(395, 47);
+            this.label4.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
+            this.label5.Location = new System.Drawing.Point(-1, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(395, 10);
+            this.label5.TabIndex = 3;
+            // 
+            // UsernameErr
+            // 
+            this.UsernameErr.ContainerControl = this;
+            // 
+            // PasswordErr
+            // 
+            this.PasswordErr.ContainerControl = this;
+            // 
+            // StartDateErr
+            // 
+            this.StartDateErr.ContainerControl = this;
+            // 
+            // EndDateErr
+            // 
+            this.EndDateErr.ContainerControl = this;
+            // 
+            // DropTimer
+            // 
+            this.DropTimer.Interval = 1;
+            this.DropTimer.Tick += new System.EventHandler(this.DropTimer_Tick);
             // 
             // Hoteliers
             // 
@@ -173,9 +594,15 @@
             this.tabControl1.ResumeLayout(false);
             this.StaffLogTab.ResumeLayout(false);
             this.StaffLogTab.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.usernameError)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.passwordError)).EndInit();
+            this.BookingTab.ResumeLayout(false);
+            this.BookingTab.PerformLayout();
+            this.dropDownPanel.ResumeLayout(false);
+            this.dropDownPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.UsernameErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -189,11 +616,44 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox StaffUserInput;
         private System.Windows.Forms.TextBox StaffPasswordInput;
-        private System.Windows.Forms.ErrorProvider usernameError;
-        private System.Windows.Forms.ErrorProvider passwordError;
+        private System.Windows.Forms.ErrorProvider UsernameErr;
+        private System.Windows.Forms.ErrorProvider PasswordErr;
         private System.Windows.Forms.Button StaffLoginBtn;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage BookingTab;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label HotelLbl;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox PrefIDTxt;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label PrefIDLbl;
+        private System.Windows.Forms.DateTimePicker BookEndDate;
+        private System.Windows.Forms.DateTimePicker BookStartDate;
+        private System.Windows.Forms.ErrorProvider StartDateErr;
+        private System.Windows.Forms.ErrorProvider EndDateErr;
+        private System.Windows.Forms.Label StartDateLbl;
+        private System.Windows.Forms.FlowLayoutPanel dropDownPanel;
+        private System.Windows.Forms.Label EndDateLbl;
+        private System.Windows.Forms.Button dropRoomBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer DropTimer;
+        private System.Windows.Forms.Label RoomLbl;
+        private System.Windows.Forms.Button IncDRoom;
+        private System.Windows.Forms.TextBox RoomTxt;
+        private System.Windows.Forms.Button IncARoom;
+        private System.Windows.Forms.Label AdultsLbl;
+        private System.Windows.Forms.Button IncDAdult;
+        private System.Windows.Forms.TextBox AdultTxt;
+        private System.Windows.Forms.Button IncAAdult;
+        private System.Windows.Forms.Label ChildrenLbl;
+        private System.Windows.Forms.Button IncDChild;
+        private System.Windows.Forms.TextBox ChildTxt;
+        private System.Windows.Forms.Button IncAChild;
+        private System.Windows.Forms.Label InfantLbl;
+        private System.Windows.Forms.Button IncDInfants;
+        private System.Windows.Forms.TextBox InfantTxt;
+        private System.Windows.Forms.Button IncAInfant;
+        private System.Windows.Forms.Label label6;
     }
 }
 
