@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HotelliersAssignment
 {
     public partial class Hoteliers : Form
     {
+        private bool userClosing = false;
         bool expand = false;
-        String resourceValue = Resources.Test;
         public Hoteliers()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace HotelliersAssignment
 
             BookStartDate.MinDate = DateTime.UtcNow;
             BookEndDate.MinDate = DateTime.UtcNow.AddDays(1);
-            MessageBox.Show(resourceValue);
+            
 
         }
 
@@ -221,6 +222,7 @@ namespace HotelliersAssignment
                 return false;
             }
         }
+
         //Handles the change of text in any of the room,adult, child and etc text boxes 
         private void RoomPersonCheck_Changed(object sender, EventArgs e)
         {
@@ -258,6 +260,120 @@ namespace HotelliersAssignment
                 InfantTxt.Text = NumberValidation(InfantNum).ToString();
             }
             RoomPersonTxt.Text = BtnText.ToString();
+        }
+
+        private void RoomPerson_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (!int.TryParse(textBox.Text, out _))
+            {
+                // Shows a MessageBox if the input is not an integer
+                MessageBox.Show($"Please enter a valid integer in {textBox.Name}.", "Input Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox.Text = "0";
+            }
+        }
+
+        private void AddressStr_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text != string.Empty & int.TryParse(textBox.Text, out _))
+            {
+                // Shows a MessageBox if the input is not an integer
+                MessageBox.Show($"Please enter a valid string, containing no integers, in {textBox.Name}.", "Input Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox.Text = string.Empty;
+            }
+        }
+
+        private void AddressInt_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text != string.Empty & !int.TryParse(textBox.Text, out _))
+            {
+                // Shows a MessageBox if the input is not an integer
+                MessageBox.Show($"Please enter a valid integer in {textBox.Name}.", "Input Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox.Text = string.Empty;
+            }
+        }
+
+
+        private void BookingSubBtn_Click(object sender, EventArgs e)
+        {
+            // Trigger validation for the tab control
+            if (ValidateAllTextFields(tabControl1.SelectedTab))
+            {
+                MessageBox.Show("All text boxes are filled.", "Empty Text Box Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Please fill in all the required fields on the current tab.", "Empty Text Box Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        /// <summary>
+        /// Used by the submit button to provide and error to the user when a field is left empty
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Address_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            //Discludes certain texts from the validation
+            if (textBox == RoomPersonTxt || textBox == PrefIDTxt)
+            {
+                return;
+            }
+
+            // Check if the text box is empty
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                AddressErrorProv.SetError(textBox, "This field cannot be empty");
+            }
+            else
+            {
+                AddressErrorProv.SetError(textBox, ""); // Clear error
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="container">Tabcontrol1</param>
+        /// <returns></returns>
+        private bool ValidateAllTextFields(Control container)
+        {
+            bool allFieldsFilled = true;
+
+            if (!userClosing)
+            {
+                foreach (Control control in container.Controls)
+                {
+                    if (control is TextBox textBox && (textBox != RoomPersonTxt && textBox != PrefIDTxt))
+                    {
+                        if (string.IsNullOrWhiteSpace(textBox.Text))
+                        {
+                            AddressErrorProv.SetError(textBox, "This field cannot be empty");
+                            allFieldsFilled = false;
+                        }
+                        else
+                        {
+                            AddressErrorProv.SetError(textBox, ""); // Clear error
+                        }
+                    }
+                }
+            }
+
+            return allFieldsFilled;
+        }
+
+        private void Hoteliers_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Set the flag indicating that the user is closing the form
+                userClosing = true;
+                MessageBox.Show("Hope you enjoyed using the application!", "Goodbye!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
         }
     }
 }

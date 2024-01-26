@@ -41,6 +41,23 @@ namespace HotelliersAssignment
             this.label1 = new System.Windows.Forms.Label();
             this.StaffTab = new System.Windows.Forms.TabPage();
             this.BookingTab = new System.Windows.Forms.TabPage();
+            this.BookingSubBtn = new System.Windows.Forms.Button();
+            this.TelephoneTxt = new System.Windows.Forms.TextBox();
+            this.PostcodeTxt = new System.Windows.Forms.TextBox();
+            this.CountyTxt = new System.Windows.Forms.TextBox();
+            this.TownTxt = new System.Windows.Forms.TextBox();
+            this.StrTxt = new System.Windows.Forms.TextBox();
+            this.StrNumTxt = new System.Windows.Forms.TextBox();
+            this.CustTxt = new System.Windows.Forms.TextBox();
+            this.CountyLbl = new System.Windows.Forms.Label();
+            this.StreetLbl = new System.Windows.Forms.Label();
+            this.TeleLbl = new System.Windows.Forms.Label();
+            this.PostcodeLbl = new System.Windows.Forms.Label();
+            this.TownLbl = new System.Windows.Forms.Label();
+            this.StNumLbl = new System.Windows.Forms.Label();
+            this.CustLbl = new System.Windows.Forms.Label();
+            this.RoomPersonTxt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dropDownPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -77,23 +94,7 @@ namespace HotelliersAssignment
             this.StartDateErr = new System.Windows.Forms.ErrorProvider(this.components);
             this.EndDateErr = new System.Windows.Forms.ErrorProvider(this.components);
             this.DropTimer = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.RoomPersonTxt = new System.Windows.Forms.TextBox();
-            this.CustLbl = new System.Windows.Forms.Label();
-            this.StNumLbl = new System.Windows.Forms.Label();
-            this.TownLbl = new System.Windows.Forms.Label();
-            this.PostcodeLbl = new System.Windows.Forms.Label();
-            this.TeleLbl = new System.Windows.Forms.Label();
-            this.StreetLbl = new System.Windows.Forms.Label();
-            this.CountyLbl = new System.Windows.Forms.Label();
-            this.CustTxt = new System.Windows.Forms.TextBox();
-            this.StrNumTxt = new System.Windows.Forms.TextBox();
-            this.StrTxt = new System.Windows.Forms.TextBox();
-            this.TownTxt = new System.Windows.Forms.TextBox();
-            this.CountyTxt = new System.Windows.Forms.TextBox();
-            this.PostcodeTxt = new System.Windows.Forms.TextBox();
-            this.TelephoneTxt = new System.Windows.Forms.TextBox();
-            this.BookingSubBtn = new System.Windows.Forms.Button();
+            this.AddressErrorProv = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.StaffLogTab.SuspendLayout();
             this.BookingTab.SuspendLayout();
@@ -103,6 +104,7 @@ namespace HotelliersAssignment
             ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddressErrorProv)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -230,6 +232,174 @@ namespace HotelliersAssignment
             this.BookingTab.TabIndex = 2;
             this.BookingTab.Text = "Booking";
             // 
+            // BookingSubBtn
+            // 
+            this.BookingSubBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BookingSubBtn.Location = new System.Drawing.Point(56, 342);
+            this.BookingSubBtn.Name = "BookingSubBtn";
+            this.BookingSubBtn.Size = new System.Drawing.Size(75, 23);
+            this.BookingSubBtn.TabIndex = 30;
+            this.BookingSubBtn.Text = "Submit";
+            this.BookingSubBtn.UseVisualStyleBackColor = true;
+            this.BookingSubBtn.Click += new System.EventHandler(this.BookingSubBtn_Click);
+            // 
+            // TelephoneTxt
+            // 
+            this.TelephoneTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TelephoneTxt.Location = new System.Drawing.Point(597, 380);
+            this.TelephoneTxt.Name = "TelephoneTxt";
+            this.TelephoneTxt.Size = new System.Drawing.Size(136, 27);
+            this.TelephoneTxt.TabIndex = 29;
+            this.TelephoneTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
+            // 
+            // PostcodeTxt
+            // 
+            this.PostcodeTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PostcodeTxt.Location = new System.Drawing.Point(597, 319);
+            this.PostcodeTxt.Name = "PostcodeTxt";
+            this.PostcodeTxt.Size = new System.Drawing.Size(136, 27);
+            this.PostcodeTxt.TabIndex = 28;
+            this.PostcodeTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
+            this.PostcodeTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
+            // 
+            // CountyTxt
+            // 
+            this.CountyTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountyTxt.Location = new System.Drawing.Point(597, 259);
+            this.CountyTxt.Name = "CountyTxt";
+            this.CountyTxt.Size = new System.Drawing.Size(136, 27);
+            this.CountyTxt.TabIndex = 27;
+            this.CountyTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
+            this.CountyTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
+            // 
+            // TownTxt
+            // 
+            this.TownTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TownTxt.Location = new System.Drawing.Point(597, 200);
+            this.TownTxt.Name = "TownTxt";
+            this.TownTxt.Size = new System.Drawing.Size(136, 27);
+            this.TownTxt.TabIndex = 26;
+            this.TownTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
+            this.TownTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
+            // 
+            // StrTxt
+            // 
+            this.StrTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StrTxt.Location = new System.Drawing.Point(597, 139);
+            this.StrTxt.Name = "StrTxt";
+            this.StrTxt.Size = new System.Drawing.Size(136, 27);
+            this.StrTxt.TabIndex = 25;
+            this.StrTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
+            this.StrTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
+            // 
+            // StrNumTxt
+            // 
+            this.StrNumTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StrNumTxt.Location = new System.Drawing.Point(597, 80);
+            this.StrNumTxt.Name = "StrNumTxt";
+            this.StrNumTxt.Size = new System.Drawing.Size(136, 27);
+            this.StrNumTxt.TabIndex = 24;
+            this.StrNumTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
+            this.StrNumTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
+            // 
+            // CustTxt
+            // 
+            this.CustTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustTxt.Location = new System.Drawing.Point(597, 19);
+            this.CustTxt.Name = "CustTxt";
+            this.CustTxt.Size = new System.Drawing.Size(136, 27);
+            this.CustTxt.TabIndex = 23;
+            this.CustTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
+            // 
+            // CountyLbl
+            // 
+            this.CountyLbl.AutoSize = true;
+            this.CountyLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.CountyLbl.Location = new System.Drawing.Point(489, 260);
+            this.CountyLbl.Name = "CountyLbl";
+            this.CountyLbl.Size = new System.Drawing.Size(73, 21);
+            this.CountyLbl.TabIndex = 22;
+            this.CountyLbl.Text = "County:";
+            // 
+            // StreetLbl
+            // 
+            this.StreetLbl.AutoSize = true;
+            this.StreetLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.StreetLbl.Location = new System.Drawing.Point(489, 140);
+            this.StreetLbl.Name = "StreetLbl";
+            this.StreetLbl.Size = new System.Drawing.Size(73, 21);
+            this.StreetLbl.TabIndex = 21;
+            this.StreetLbl.Text = "Street:";
+            // 
+            // TeleLbl
+            // 
+            this.TeleLbl.AutoSize = true;
+            this.TeleLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.TeleLbl.Location = new System.Drawing.Point(426, 380);
+            this.TeleLbl.Name = "TeleLbl";
+            this.TeleLbl.Size = new System.Drawing.Size(136, 21);
+            this.TeleLbl.TabIndex = 20;
+            this.TeleLbl.Text = "Telephone Num:";
+            // 
+            // PostcodeLbl
+            // 
+            this.PostcodeLbl.AutoSize = true;
+            this.PostcodeLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.PostcodeLbl.Location = new System.Drawing.Point(471, 320);
+            this.PostcodeLbl.Name = "PostcodeLbl";
+            this.PostcodeLbl.Size = new System.Drawing.Size(91, 21);
+            this.PostcodeLbl.TabIndex = 19;
+            this.PostcodeLbl.Text = "Postcode:";
+            // 
+            // TownLbl
+            // 
+            this.TownLbl.AutoSize = true;
+            this.TownLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.TownLbl.Location = new System.Drawing.Point(507, 200);
+            this.TownLbl.Name = "TownLbl";
+            this.TownLbl.Size = new System.Drawing.Size(55, 21);
+            this.TownLbl.TabIndex = 18;
+            this.TownLbl.Text = "Town:";
+            // 
+            // StNumLbl
+            // 
+            this.StNumLbl.AutoSize = true;
+            this.StNumLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.StNumLbl.Location = new System.Drawing.Point(426, 80);
+            this.StNumLbl.Name = "StNumLbl";
+            this.StNumLbl.Size = new System.Drawing.Size(136, 21);
+            this.StNumLbl.TabIndex = 17;
+            this.StNumLbl.Text = "Street Number:";
+            // 
+            // CustLbl
+            // 
+            this.CustLbl.AutoSize = true;
+            this.CustLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
+            this.CustLbl.Location = new System.Drawing.Point(426, 20);
+            this.CustLbl.Name = "CustLbl";
+            this.CustLbl.Size = new System.Drawing.Size(136, 21);
+            this.CustLbl.TabIndex = 16;
+            this.CustLbl.Text = "Customer Name:";
+            // 
+            // RoomPersonTxt
+            // 
+            this.RoomPersonTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(170)))), ((int)(((byte)(157)))));
+            this.RoomPersonTxt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RoomPersonTxt.Location = new System.Drawing.Point(14, 213);
+            this.RoomPersonTxt.Multiline = true;
+            this.RoomPersonTxt.Name = "RoomPersonTxt";
+            this.RoomPersonTxt.ReadOnly = true;
+            this.RoomPersonTxt.Size = new System.Drawing.Size(159, 68);
+            this.RoomPersonTxt.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
+            this.label7.Location = new System.Drawing.Point(-1, 290);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(185, 2);
+            this.label7.TabIndex = 14;
+            // 
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
@@ -329,6 +499,7 @@ namespace HotelliersAssignment
             this.RoomTxt.Text = "0";
             this.RoomTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RoomTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
+            this.RoomTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
             // 
             // IncARoom
             // 
@@ -381,6 +552,7 @@ namespace HotelliersAssignment
             this.AdultTxt.Text = "0";
             this.AdultTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.AdultTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
+            this.AdultTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
             // 
             // IncAAdult
             // 
@@ -433,6 +605,7 @@ namespace HotelliersAssignment
             this.ChildTxt.Text = "0";
             this.ChildTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ChildTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
+            this.ChildTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
             // 
             // IncAChild
             // 
@@ -485,6 +658,7 @@ namespace HotelliersAssignment
             this.InfantTxt.Text = "0";
             this.InfantTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.InfantTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
+            this.InfantTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
             // 
             // IncAInfant
             // 
@@ -624,160 +798,9 @@ namespace HotelliersAssignment
             this.DropTimer.Interval = 1;
             this.DropTimer.Tick += new System.EventHandler(this.DropTimer_Tick);
             // 
-            // label7
+            // AddressErrorProv
             // 
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(174)))), ((int)(((byte)(111)))));
-            this.label7.Location = new System.Drawing.Point(-1, 290);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(185, 2);
-            this.label7.TabIndex = 14;
-            // 
-            // RoomPersonTxt
-            // 
-            this.RoomPersonTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(170)))), ((int)(((byte)(157)))));
-            this.RoomPersonTxt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RoomPersonTxt.Location = new System.Drawing.Point(14, 213);
-            this.RoomPersonTxt.Multiline = true;
-            this.RoomPersonTxt.Name = "RoomPersonTxt";
-            this.RoomPersonTxt.ReadOnly = true;
-            this.RoomPersonTxt.Size = new System.Drawing.Size(159, 68);
-            this.RoomPersonTxt.TabIndex = 15;
-            // 
-            // CustLbl
-            // 
-            this.CustLbl.AutoSize = true;
-            this.CustLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.CustLbl.Location = new System.Drawing.Point(426, 20);
-            this.CustLbl.Name = "CustLbl";
-            this.CustLbl.Size = new System.Drawing.Size(136, 21);
-            this.CustLbl.TabIndex = 16;
-            this.CustLbl.Text = "Customer Name:";
-            // 
-            // StNumLbl
-            // 
-            this.StNumLbl.AutoSize = true;
-            this.StNumLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.StNumLbl.Location = new System.Drawing.Point(426, 80);
-            this.StNumLbl.Name = "StNumLbl";
-            this.StNumLbl.Size = new System.Drawing.Size(136, 21);
-            this.StNumLbl.TabIndex = 17;
-            this.StNumLbl.Text = "Street Number:";
-            // 
-            // TownLbl
-            // 
-            this.TownLbl.AutoSize = true;
-            this.TownLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.TownLbl.Location = new System.Drawing.Point(507, 200);
-            this.TownLbl.Name = "TownLbl";
-            this.TownLbl.Size = new System.Drawing.Size(55, 21);
-            this.TownLbl.TabIndex = 18;
-            this.TownLbl.Text = "Town:";
-            // 
-            // PostcodeLbl
-            // 
-            this.PostcodeLbl.AutoSize = true;
-            this.PostcodeLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.PostcodeLbl.Location = new System.Drawing.Point(471, 320);
-            this.PostcodeLbl.Name = "PostcodeLbl";
-            this.PostcodeLbl.Size = new System.Drawing.Size(91, 21);
-            this.PostcodeLbl.TabIndex = 19;
-            this.PostcodeLbl.Text = "Postcode:";
-            // 
-            // TeleLbl
-            // 
-            this.TeleLbl.AutoSize = true;
-            this.TeleLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.TeleLbl.Location = new System.Drawing.Point(426, 380);
-            this.TeleLbl.Name = "TeleLbl";
-            this.TeleLbl.Size = new System.Drawing.Size(136, 21);
-            this.TeleLbl.TabIndex = 20;
-            this.TeleLbl.Text = "Telephone Num:";
-            // 
-            // StreetLbl
-            // 
-            this.StreetLbl.AutoSize = true;
-            this.StreetLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.StreetLbl.Location = new System.Drawing.Point(489, 140);
-            this.StreetLbl.Name = "StreetLbl";
-            this.StreetLbl.Size = new System.Drawing.Size(73, 21);
-            this.StreetLbl.TabIndex = 21;
-            this.StreetLbl.Text = "Street:";
-            // 
-            // CountyLbl
-            // 
-            this.CountyLbl.AutoSize = true;
-            this.CountyLbl.Font = new System.Drawing.Font("Cascadia Code", 12F);
-            this.CountyLbl.Location = new System.Drawing.Point(489, 260);
-            this.CountyLbl.Name = "CountyLbl";
-            this.CountyLbl.Size = new System.Drawing.Size(73, 21);
-            this.CountyLbl.TabIndex = 22;
-            this.CountyLbl.Text = "County:";
-            // 
-            // CustTxt
-            // 
-            this.CustTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustTxt.Location = new System.Drawing.Point(597, 19);
-            this.CustTxt.Name = "CustTxt";
-            this.CustTxt.Size = new System.Drawing.Size(136, 27);
-            this.CustTxt.TabIndex = 23;
-            // 
-            // StrNumTxt
-            // 
-            this.StrNumTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StrNumTxt.Location = new System.Drawing.Point(597, 80);
-            this.StrNumTxt.Name = "StrNumTxt";
-            this.StrNumTxt.Size = new System.Drawing.Size(136, 27);
-            this.StrNumTxt.TabIndex = 24;
-            // 
-            // StrTxt
-            // 
-            this.StrTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StrTxt.Location = new System.Drawing.Point(597, 139);
-            this.StrTxt.Name = "StrTxt";
-            this.StrTxt.Size = new System.Drawing.Size(136, 27);
-            this.StrTxt.TabIndex = 25;
-            // 
-            // TownTxt
-            // 
-            this.TownTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TownTxt.Location = new System.Drawing.Point(597, 200);
-            this.TownTxt.Name = "TownTxt";
-            this.TownTxt.Size = new System.Drawing.Size(136, 27);
-            this.TownTxt.TabIndex = 26;
-            // 
-            // CountyTxt
-            // 
-            this.CountyTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountyTxt.Location = new System.Drawing.Point(597, 259);
-            this.CountyTxt.Name = "CountyTxt";
-            this.CountyTxt.Size = new System.Drawing.Size(136, 27);
-            this.CountyTxt.TabIndex = 27;
-            // 
-            // PostcodeTxt
-            // 
-            this.PostcodeTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PostcodeTxt.Location = new System.Drawing.Point(597, 319);
-            this.PostcodeTxt.Name = "PostcodeTxt";
-            this.PostcodeTxt.Size = new System.Drawing.Size(136, 27);
-            this.PostcodeTxt.TabIndex = 28;
-            // 
-            // TelephoneTxt
-            // 
-            this.TelephoneTxt.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelephoneTxt.Location = new System.Drawing.Point(597, 380);
-            this.TelephoneTxt.Name = "TelephoneTxt";
-            this.TelephoneTxt.Size = new System.Drawing.Size(136, 27);
-            this.TelephoneTxt.TabIndex = 29;
-            // 
-            // BookingSubBtn
-            // 
-            this.BookingSubBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BookingSubBtn.Location = new System.Drawing.Point(56, 342);
-            this.BookingSubBtn.Name = "BookingSubBtn";
-            this.BookingSubBtn.Size = new System.Drawing.Size(75, 23);
-            this.BookingSubBtn.TabIndex = 30;
-            this.BookingSubBtn.Text = "Submit";
-            this.BookingSubBtn.UseVisualStyleBackColor = true;
+            this.AddressErrorProv.ContainerControl = this;
             // 
             // Hoteliers
             // 
@@ -788,6 +811,7 @@ namespace HotelliersAssignment
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Hoteliers";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Hoteliers_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.StaffLogTab.ResumeLayout(false);
             this.StaffLogTab.PerformLayout();
@@ -800,6 +824,7 @@ namespace HotelliersAssignment
             ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddressErrorProv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -868,6 +893,7 @@ namespace HotelliersAssignment
         private System.Windows.Forms.TextBox CustTxt;
         private System.Windows.Forms.Label CountyLbl;
         private System.Windows.Forms.Button BookingSubBtn;
+        private System.Windows.Forms.ErrorProvider AddressErrorProv;
     }
 }
 
