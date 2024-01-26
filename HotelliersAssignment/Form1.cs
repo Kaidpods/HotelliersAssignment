@@ -162,5 +162,102 @@ namespace HotelliersAssignment
             InfantTxt.Text = InfantNum.ToString();
         }
 
+        private void IncDInfants_Click(object sender, EventArgs e)
+        {
+            InfantNum = int.Parse(InfantTxt.Text);
+            InfantNum--;
+            InfantNum = NumberValidation(InfantNum);
+            InfantTxt.Text = InfantNum.ToString();
+        }
+
+        private void IncDAdult_Click(object sender, EventArgs e)
+        {
+            AdultNum = int.Parse(AdultTxt.Text);
+            AdultNum--;
+            AdultNum = NumberValidation(AdultNum);
+            AdultTxt.Text = AdultNum.ToString();
+        }
+
+        private void IncDChild_Click(object sender, EventArgs e)
+        {
+            ChildNum = int.Parse(ChildTxt.Text);
+            ChildNum--;
+            ChildNum = NumberValidation(ChildNum);
+            ChildTxt.Text = ChildNum.ToString();
+        }
+
+        private void IncDRoom_Click(object sender, EventArgs e)
+        {
+            RoomNum = int.Parse(RoomTxt.Text);
+            RoomNum--;
+            RoomNum = NumberValidation(RoomNum);
+            RoomTxt.Text = RoomNum.ToString();
+        }
+
+        //To ensure variable doesnt go below 0
+        private int NumberValidation(int input)
+        {
+            if (input < 0)
+            {
+                MessageBox.Show("You can not go below 0");
+                return 0;
+            }
+            else
+            {
+                return input;
+            }
+        }
+
+        //Ensures that the numbers arent negative
+        private bool NegativeValidation(string input)
+        {
+            if (input.Contains("-"))
+            {
+                MessageBox.Show("You can not go below 0");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //Handles the change of text in any of the room,adult, child and etc text boxes 
+        private void RoomPersonCheck_Changed(object sender, EventArgs e)
+        {
+            StringBuilder BtnText = new StringBuilder();
+            if (RoomNum > 0)
+            {
+                BtnText.Append(RoomTxt.Text + " Rooms | ");
+            }
+            else if (NegativeValidation(RoomTxt.Text))
+            {
+                RoomTxt.Text = NumberValidation(RoomNum).ToString();
+            }
+            if (AdultNum > 0)
+            {
+                BtnText.Append(AdultTxt.Text + " Adults | ");
+            }
+            else if (NegativeValidation(AdultTxt.Text))
+            {
+                AdultTxt.Text = NumberValidation(AdultNum).ToString();
+            }
+            if (ChildNum > 0) 
+            {
+                BtnText.Append(ChildTxt.Text + " Children | ");     
+            }
+            else if (NegativeValidation(ChildTxt.Text))
+            {
+                ChildTxt.Text = NumberValidation(ChildNum).ToString();
+            }
+            if (InfantNum > 0)
+            {
+                BtnText.Append(InfantTxt.Text + " Infants");
+            }
+            else if (NegativeValidation(InfantTxt.Text))
+            {
+                InfantTxt.Text = NumberValidation(InfantNum).ToString();
+            }
+            RoomPersonTxt.Text = BtnText.ToString();
+        }
     }
 }
