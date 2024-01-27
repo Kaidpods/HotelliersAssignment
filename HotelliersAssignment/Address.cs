@@ -25,11 +25,10 @@ namespace HoteliersAssignment
         public override String ToString()
         {
             return houseNumber +
-                    " " + street +
-                    ",\n" + town +
-                    ",\n" + county +
-                    ",\n" + postcode +
-                    ".";
+                    ", " + street +
+                    ", " + town +
+                    ", " + county +
+                    ", " + postcode;
         }
     }
 }

@@ -250,7 +250,7 @@ namespace HotelliersAssignment
             this.TelephoneTxt.Name = "TelephoneTxt";
             this.TelephoneTxt.Size = new System.Drawing.Size(136, 27);
             this.TelephoneTxt.TabIndex = 29;
-            this.TelephoneTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
+            this.TelephoneTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
             // 
             // PostcodeTxt
             // 
@@ -259,7 +259,6 @@ namespace HotelliersAssignment
             this.PostcodeTxt.Name = "PostcodeTxt";
             this.PostcodeTxt.Size = new System.Drawing.Size(136, 27);
             this.PostcodeTxt.TabIndex = 28;
-            this.PostcodeTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
             this.PostcodeTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
             // 
             // CountyTxt
@@ -289,7 +288,6 @@ namespace HotelliersAssignment
             this.StrTxt.Name = "StrTxt";
             this.StrTxt.Size = new System.Drawing.Size(136, 27);
             this.StrTxt.TabIndex = 25;
-            this.StrTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
             this.StrTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
             // 
             // StrNumTxt
@@ -299,7 +297,6 @@ namespace HotelliersAssignment
             this.StrNumTxt.Name = "StrNumTxt";
             this.StrNumTxt.Size = new System.Drawing.Size(136, 27);
             this.StrNumTxt.TabIndex = 24;
-            this.StrNumTxt.Leave += new System.EventHandler(this.AddressInt_Leave);
             this.StrNumTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
             // 
             // CustTxt
@@ -310,6 +307,7 @@ namespace HotelliersAssignment
             this.CustTxt.Size = new System.Drawing.Size(136, 27);
             this.CustTxt.TabIndex = 23;
             this.CustTxt.Leave += new System.EventHandler(this.AddressStr_Leave);
+            this.CustTxt.Validating += new System.ComponentModel.CancelEventHandler(this.Address_Validating);
             // 
             // CountyLbl
             // 
@@ -391,6 +389,7 @@ namespace HotelliersAssignment
             this.RoomPersonTxt.ReadOnly = true;
             this.RoomPersonTxt.Size = new System.Drawing.Size(159, 68);
             this.RoomPersonTxt.TabIndex = 15;
+            this.RoomPersonTxt.Text = "1 Room | 1 Adult";
             // 
             // label7
             // 
@@ -411,6 +410,7 @@ namespace HotelliersAssignment
             // dropDownPanel
             // 
             this.dropDownPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(186)))), ((int)(((byte)(175)))));
+            this.dropDownPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dropDownPanel.Controls.Add(this.panel1);
             this.dropDownPanel.Controls.Add(this.RoomLbl);
             this.dropDownPanel.Controls.Add(this.IncDRoom);
@@ -433,7 +433,7 @@ namespace HotelliersAssignment
             this.dropDownPanel.MaximumSize = new System.Drawing.Size(200, 201);
             this.dropDownPanel.MinimumSize = new System.Drawing.Size(200, 30);
             this.dropDownPanel.Name = "dropDownPanel";
-            this.dropDownPanel.Size = new System.Drawing.Size(200, 201);
+            this.dropDownPanel.Size = new System.Drawing.Size(200, 30);
             this.dropDownPanel.TabIndex = 12;
             // 
             // panel1
@@ -459,7 +459,7 @@ namespace HotelliersAssignment
             this.dropRoomBtn.Text = "Room and Person(s)";
             this.dropRoomBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dropRoomBtn.UseVisualStyleBackColor = false;
-            this.dropRoomBtn.Click += new System.EventHandler(this.dropRoomBtn_Click);
+            this.dropRoomBtn.Click += new System.EventHandler(this.DropRoomBtn_Click);
             // 
             // RoomLbl
             // 
@@ -496,7 +496,7 @@ namespace HotelliersAssignment
             this.RoomTxt.Name = "RoomTxt";
             this.RoomTxt.Size = new System.Drawing.Size(28, 29);
             this.RoomTxt.TabIndex = 3;
-            this.RoomTxt.Text = "0";
+            this.RoomTxt.Text = "1";
             this.RoomTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RoomTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
             this.RoomTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
@@ -549,7 +549,7 @@ namespace HotelliersAssignment
             this.AdultTxt.Name = "AdultTxt";
             this.AdultTxt.Size = new System.Drawing.Size(28, 29);
             this.AdultTxt.TabIndex = 7;
-            this.AdultTxt.Text = "0";
+            this.AdultTxt.Text = "1";
             this.AdultTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.AdultTxt.TextChanged += new System.EventHandler(this.RoomPersonCheck_Changed);
             this.AdultTxt.Leave += new System.EventHandler(this.RoomPerson_Leave);
@@ -700,19 +700,19 @@ namespace HotelliersAssignment
             // 
             this.BookEndDate.Checked = false;
             this.BookEndDate.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BookEndDate.Location = new System.Drawing.Point(188, 159);
+            this.BookEndDate.Location = new System.Drawing.Point(155, 159);
             this.BookEndDate.Name = "BookEndDate";
-            this.BookEndDate.Size = new System.Drawing.Size(200, 26);
+            this.BookEndDate.Size = new System.Drawing.Size(233, 26);
             this.BookEndDate.TabIndex = 9;
             this.BookEndDate.Value = new System.DateTime(2024, 1, 24, 22, 55, 19, 0);
             // 
             // BookStartDate
             // 
             this.BookStartDate.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BookStartDate.Location = new System.Drawing.Point(188, 111);
+            this.BookStartDate.Location = new System.Drawing.Point(155, 111);
             this.BookStartDate.MinDate = new System.DateTime(2024, 1, 24, 0, 0, 0, 0);
             this.BookStartDate.Name = "BookStartDate";
-            this.BookStartDate.Size = new System.Drawing.Size(200, 26);
+            this.BookStartDate.Size = new System.Drawing.Size(233, 26);
             this.BookStartDate.TabIndex = 8;
             // 
             // label3
