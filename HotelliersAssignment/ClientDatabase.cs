@@ -59,7 +59,7 @@ namespace HotelliersAssignment
         {
             using (StreamWriter stream = File.AppendText("ClientDatabase.csv"))
             {
-                client.ToString();
+                stream.WriteLine(client.ToString());
             }
         }
 

@@ -52,6 +52,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ClientDatabase.cs" />
     <Compile Include="Conference.cs" />
+    <Compile Include="EncryptorDecryptor.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,7 +72,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -84,6 +85,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\test.dat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,13 +106,7 @@
     <EmbeddedResource Include="Resources\AllRooms.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BookedMultRooms.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BookedSingleRooms.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Resources\Testing.txt" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

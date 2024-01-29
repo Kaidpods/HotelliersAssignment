@@ -22,7 +22,7 @@ namespace HotelliersAssignment.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace HotelliersAssignment.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelliersAssignment.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace HotelliersAssignment.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -86,7 +86,7 @@ namespace HotelliersAssignment.Properties {
         ///205,Double,High,50,2
         ///206,Do [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string AllRooms {
+        public static string AllRooms {
             get {
                 return ResourceManager.GetString("AllRooms", resourceCulture);
             }
@@ -95,7 +95,7 @@ namespace HotelliersAssignment.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_minus_24 {
+        public static System.Drawing.Bitmap icons8_minus_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8_minus_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -105,7 +105,7 @@ namespace HotelliersAssignment.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_minus_24__1_ {
+        public static System.Drawing.Bitmap icons8_minus_24__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8_minus_24__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -115,7 +115,7 @@ namespace HotelliersAssignment.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_plus_24 {
+        public static System.Drawing.Bitmap icons8_plus_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8_plus_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -125,10 +125,20 @@ namespace HotelliersAssignment.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_plus_24__1_ {
+        public static System.Drawing.Bitmap icons8_plus_24__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8_plus_24__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] test {
+            get {
+                object obj = ResourceManager.GetObject("test", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

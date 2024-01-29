@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace HotelliersAssignment
 {
@@ -23,6 +25,10 @@ namespace HotelliersAssignment
         bool expand = false;
         private string multPath = "BookedMultRooms.txt";
         private string singPath = "BookedSingleRooms.txt";
+        private string encryptedFile = "encrypted.dat";
+        private string password = "MySecretPassword";
+        private List<string> staffUser = new List<string>();
+        private List<string> staffPass = new List<string>();
         /// <summary>
         /// Total number of people selected
         /// </summary>
@@ -30,6 +36,7 @@ namespace HotelliersAssignment
         public Hoteliers()
         {
             InitializeComponent();
+            getStaffCredentials();
             tabControl1.TabPages.Remove(StaffTab);
             StaffUserInput.Text = "Username";
             StaffUserInput.ForeColor = Color.LightGray;
@@ -38,6 +45,9 @@ namespace HotelliersAssignment
 
             BookStartDate.MinDate = DateTime.UtcNow;
             BookEndDate.MinDate = DateTime.UtcNow.AddDays(1);
+            
+
+
 
 
         }
@@ -60,21 +70,41 @@ namespace HotelliersAssignment
                 {
                     PasswordErr.SetError(StaffPasswordInput, "Can't be null or empty");
                 }
-                if (StaffPasswordInput.Text.Equals("Password123") & StaffUserInput.Text.Equals("Kaiden"))
-                {
-                    complete = true;
-                    tabControl1.TabPages.Add(StaffTab);
-                    tabControl1.TabPages.Remove(StaffLogTab);
-                    tabControl1.SelectTab(StaffTab);
-                }
-                //Add implementation of csv usernames
-                else
-                {
-                    PasswordErr.SetError(StaffPasswordInput, "Incorrect username or password");
+                for (int i = 0; i < staffUser.Count; i++) {
+                    if (StaffPasswordInput.Text.Equals(staffPass.ElementAt(i)) & StaffUserInput.Text.Equals(staffUser.ElementAt(i)))
+                    {
+                        complete = true;
+                        tabControl1.TabPages.Add(StaffTab);
+                        tabControl1.TabPages.Remove(StaffLogTab);
+                        tabControl1.SelectTab(StaffTab);
+                        ListBoxGeneration();
+                    }
+                    else
+                    {
+                        PasswordErr.SetError(StaffPasswordInput, "Incorrect username or password");
+                    }
                 }
                 break;
+                //Add implementation of csv usernames
+                
             }
         }
+
+        private void ListBoxGeneration()
+        {
+            foreach (Booking booking in Program.bookingDatabase.GetBookings())
+            {
+                if (booking.IsMulti() == true)
+                {
+                    listBox1.Items.Add(booking.ToStringMult());
+                }
+                else
+                {
+                    listBox1.Items.Add(booking.ToString());
+                }
+            }
+        }
+
         private void StaffUserInput_Enter(Object sender, EventArgs e)
         {
             if (StaffUserInput.Text == "Username")
@@ -477,30 +507,6 @@ namespace HotelliersAssignment
             return allFieldsFilled;
         }
 
-        //private bool ValidateRoomTextFields(Control container)
-        //{
-        //    bool allFieldsFilled = true;
-
-        //    if (!userClosing)
-        //    {
-        //        foreach (Control control in container.Controls)
-        //        {
-        //            if (control is TextBox textBox)
-        //            {
-        //                if (textBox.Name == ChildTxt )
-        //                {
-        //                }
-        //                else
-        //                {
-        //                    AddressErrorProv.SetError(textBox, ""); // Clear error
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return allFieldsFilled;
-        //}
-
         private void Hoteliers_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -604,14 +610,14 @@ namespace HotelliersAssignment
             if (roomsToBook.Count == 1)
             {
                 Booking booking = new Booking(CustTxt.Text, roomsToBook.First(), BookStartDate.Value, dayspan, Booking.BookingType.Bedroom, int.Parse(AdultTxt.Text), int.Parse(ChildTxt.Text), int.Parse(InfantTxt.Text));
-                File.WriteAllText(singPath, booking.ToString());
+                WriteBookingsToFile(singPath, booking.ToString());
                 Program.bookingDatabase.AddBooking(booking);
             }
             else
             {
                 Booking booking = new Booking(CustTxt.Text, roomsToBook, BookStartDate.Value, dayspan, Booking.BookingType.Bedroom, int.Parse(AdultTxt.Text), int.Parse(ChildTxt.Text), int.Parse(InfantTxt.Text));
 
-                File.WriteAllText(multPath, booking.ToStringMult());
+                WriteBookingsToFile(multPath, booking.ToStringMult());
                 Program.bookingDatabase.AddMultBooking(booking);
             }
 
@@ -636,8 +642,48 @@ namespace HotelliersAssignment
 
             return result;
         }
+        public void WriteBookingsToFile(string filePath, string toWrite)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    writer.WriteLine(toWrite);
+                }
+                Console.WriteLine("Booking details have been written to the file.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error writing bookings to file: {ex.Message}");
+            }
+            
+        }
 
+        public void clearAllFields(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                if (control is TextBox textBox && (textBox != RoomPersonTxt && textBox != PrefIDTxt))
+                {
+                    textBox.Clear();
+                }
+            }
+        }
 
+        public void encryptFile()
+        {
+            string encryptedFile = "encrypted.dat";
+            string inputFile = "Password.csv";
+
+            FileEncryptor.EncryptFile(inputFile, encryptedFile, password);
+        }
+        public void getStaffCredentials()
+        {
+            string[] decryptedParts = FileEncryptor.DecryptFileAndSplit(encryptedFile, password);
+
+            staffUser.Add(decryptedParts[0]);
+            staffPass.Add(decryptedParts[1]);
+        }
 
         private void BookingSubBtn_Click(object sender, EventArgs e)
         {
@@ -646,10 +692,49 @@ namespace HotelliersAssignment
             {
                 ClientCreation();
                 BookingCreation();
+                clearAllFields(tabControl1.SelectedTab);
             }
             else
             {
                 MessageBox.Show("Please fill in all the required fields on the current tab.", "Empty Text Box Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void removeBookingBtn_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete the selected booking?", "Deletion",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                foreach (Booking booking in Program.bookingDatabase.GetBookings())
+                {
+                    if (booking.IsMulti() == true){
+                        if (listBox1.GetItemText(listBox1.SelectedItem) == booking.ToStringMult())
+                        {
+                            foreach (Room room in booking.ListRoom)
+                            {
+                                room.IsOccupied = false;
+                            }
+                            Program.bookingDatabase.removeBooking(booking);
+                            Program.bookingDatabase.RemoveBookingFromFile(multPath, booking.ToStringMult());
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (listBox1.GetItemText(listBox1.SelectedItem) == booking.ToString())
+                        {
+                            booking.Room.IsOccupied = false;
+                            Program.bookingDatabase.removeBooking(booking);
+                            Program.bookingDatabase.RemoveBookingFromFile(singPath, booking.ToString());
+                            break;
+                        }
+                    }
+
+                }
+                ListBoxGeneration();
             }
         }
     }

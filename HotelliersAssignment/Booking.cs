@@ -23,6 +23,8 @@ namespace HotelliersAssignment
         public int Adults { get; set; }
         public int Children { get; set; }
         public int Infants { get; set; }
+        private bool isMulti;
+
 
         public Booking(string customerName, Room room, DateTime startDate, int duration, BookingType type, int adults, int children, int infants)
         {
@@ -34,6 +36,7 @@ namespace HotelliersAssignment
             Adults = adults;
             Children = children;
             Infants = infants;
+            isMulti = false;
         }
 
         public Booking(string customerName, List<Room> rooms, DateTime startDate, int duration, BookingType type, int adults, int children, int infants)
@@ -46,6 +49,7 @@ namespace HotelliersAssignment
             Adults = adults;
             Children = children;
             Infants = infants;
+            isMulti = true;
         }
 
         public void Book()
@@ -63,14 +67,19 @@ namespace HotelliersAssignment
             // Add logic for checking availability, handling payments, etc.
         }
 
+        public bool IsMulti()
+        {
+            return isMulti;
+        }
+
         public string ToStringMult()
         {
             string roomsInfo = string.Join(";", ListRoom.Select(room => room.RoomNumber)); // Assuming Room.ToString() provides necessary room information
-            return $"{CustomerName},{roomsInfo},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}\n";
+            return $"{CustomerName},{roomsInfo},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}";
         }
         public override string ToString()
         {
-            return $"{CustomerName},{Room.RoomNumber},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}\n";
+            return $"{CustomerName},{Room.RoomNumber},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}";
         }
     }
 }

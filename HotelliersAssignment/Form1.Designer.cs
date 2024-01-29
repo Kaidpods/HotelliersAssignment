@@ -40,6 +40,14 @@ namespace HotelliersAssignment
             this.staffLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffTab = new System.Windows.Forms.TabPage();
+            this.newSubmit = new System.Windows.Forms.Button();
+            this.newPasswordTxt = new System.Windows.Forms.TextBox();
+            this.newUsernameTxt = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.removeBookingBtn = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.BookingTab = new System.Windows.Forms.TabPage();
             this.BookingSubBtn = new System.Windows.Forms.Button();
             this.TelephoneTxt = new System.Windows.Forms.TextBox();
@@ -95,8 +103,10 @@ namespace HotelliersAssignment
             this.EndDateErr = new System.Windows.Forms.ErrorProvider(this.components);
             this.DropTimer = new System.Windows.Forms.Timer(this.components);
             this.AddressErrorProv = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.StaffLogTab.SuspendLayout();
+            this.StaffTab.SuspendLayout();
             this.BookingTab.SuspendLayout();
             this.dropDownPanel.SuspendLayout();
             this.RoomPersonPnl.SuspendLayout();
@@ -105,6 +115,7 @@ namespace HotelliersAssignment
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddressErrorProv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -186,12 +197,96 @@ namespace HotelliersAssignment
             // StaffTab
             // 
             this.StaffTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(206)))), ((int)(((byte)(168)))));
+            this.StaffTab.Controls.Add(this.newSubmit);
+            this.StaffTab.Controls.Add(this.newPasswordTxt);
+            this.StaffTab.Controls.Add(this.newUsernameTxt);
+            this.StaffTab.Controls.Add(this.label11);
+            this.StaffTab.Controls.Add(this.label9);
+            this.StaffTab.Controls.Add(this.removeBookingBtn);
+            this.StaffTab.Controls.Add(this.label8);
+            this.StaffTab.Controls.Add(this.listBox1);
             this.StaffTab.Location = new System.Drawing.Point(4, 22);
             this.StaffTab.Name = "StaffTab";
             this.StaffTab.Padding = new System.Windows.Forms.Padding(3);
             this.StaffTab.Size = new System.Drawing.Size(790, 420);
             this.StaffTab.TabIndex = 1;
             this.StaffTab.Text = "Staff";
+            // 
+            // newSubmit
+            // 
+            this.newSubmit.Location = new System.Drawing.Point(558, 391);
+            this.newSubmit.Name = "newSubmit";
+            this.newSubmit.Size = new System.Drawing.Size(75, 23);
+            this.newSubmit.TabIndex = 8;
+            this.newSubmit.Text = "Submit";
+            this.newSubmit.UseVisualStyleBackColor = true;
+            // 
+            // newPasswordTxt
+            // 
+            this.newPasswordTxt.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.newPasswordTxt.Location = new System.Drawing.Point(356, 333);
+            this.newPasswordTxt.Name = "newPasswordTxt";
+            this.newPasswordTxt.Size = new System.Drawing.Size(277, 27);
+            this.newPasswordTxt.TabIndex = 7;
+            this.newPasswordTxt.Enter += new System.EventHandler(this.StaffUserInput_Enter);
+            this.newPasswordTxt.Leave += new System.EventHandler(this.StaffUserInput_Leave);
+            // 
+            // newUsernameTxt
+            // 
+            this.newUsernameTxt.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.newUsernameTxt.Location = new System.Drawing.Point(356, 275);
+            this.newUsernameTxt.Name = "newUsernameTxt";
+            this.newUsernameTxt.Size = new System.Drawing.Size(277, 27);
+            this.newUsernameTxt.TabIndex = 6;
+            this.newUsernameTxt.Enter += new System.EventHandler(this.StaffUserInput_Enter);
+            this.newUsernameTxt.Leave += new System.EventHandler(this.StaffUserInput_Leave);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(352, 221);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(281, 19);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Add new username and password";
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(204, 218);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(2, 202);
+            this.label9.TabIndex = 3;
+            // 
+            // removeBookingBtn
+            // 
+            this.removeBookingBtn.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeBookingBtn.Location = new System.Drawing.Point(38, 243);
+            this.removeBookingBtn.Name = "removeBookingBtn";
+            this.removeBookingBtn.Size = new System.Drawing.Size(116, 41);
+            this.removeBookingBtn.TabIndex = 2;
+            this.removeBookingBtn.Text = "DELETE";
+            this.removeBookingBtn.UseVisualStyleBackColor = true;
+            this.removeBookingBtn.Click += new System.EventHandler(this.removeBookingBtn_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(23, 221);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 19);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Remove Booking";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 6);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(776, 212);
+            this.listBox1.TabIndex = 0;
             // 
             // BookingTab
             // 
@@ -802,6 +897,10 @@ namespace HotelliersAssignment
             // 
             this.AddressErrorProv.ContainerControl = this;
             // 
+            // bookingBindingSource
+            // 
+            this.bookingBindingSource.DataSource = typeof(HotelliersAssignment.Booking);
+            // 
             // Hoteliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -815,6 +914,8 @@ namespace HotelliersAssignment
             this.tabControl1.ResumeLayout(false);
             this.StaffLogTab.ResumeLayout(false);
             this.StaffLogTab.PerformLayout();
+            this.StaffTab.ResumeLayout(false);
+            this.StaffTab.PerformLayout();
             this.BookingTab.ResumeLayout(false);
             this.BookingTab.PerformLayout();
             this.dropDownPanel.ResumeLayout(false);
@@ -825,6 +926,7 @@ namespace HotelliersAssignment
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EndDateErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddressErrorProv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -894,6 +996,15 @@ namespace HotelliersAssignment
         private System.Windows.Forms.Label CountyLbl;
         private System.Windows.Forms.Button BookingSubBtn;
         private System.Windows.Forms.ErrorProvider AddressErrorProv;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button newSubmit;
+        private System.Windows.Forms.TextBox newPasswordTxt;
+        private System.Windows.Forms.TextBox newUsernameTxt;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button removeBookingBtn;
+        private System.Windows.Forms.BindingSource bookingBindingSource;
     }
 }
 

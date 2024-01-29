@@ -132,6 +132,47 @@ namespace HotelliersAssignment
             return temp;
         }
 
+        public List<Booking> GetBookings()
+        {
+            return bookings;
+        }
 
+        public void removeBooking(Booking bookingToRemove)
+        {
+            bookings.Remove(bookingToRemove);
+            
+        }
+
+        public void RemoveBookingFromFile(string filePath, string bookingToRemove)
+        {
+            try
+            {
+                // Read all lines from the file
+                string[] lines = File.ReadAllLines(filePath);
+
+                // Find the index of the booking to remove
+                int indexToRemove = Array.FindIndex(lines, line => line.Contains(bookingToRemove));
+
+                if (indexToRemove != -1)
+                {
+                    // Remove the booking from the array
+                    List<string> updatedLines = lines.ToList();
+                    updatedLines.RemoveAt(indexToRemove);
+
+                    // Write the updated lines back to the file
+                    File.WriteAllLines(filePath, updatedLines);
+
+                    Console.WriteLine("Booking removed from file successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Booking not found in file.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error removing booking from file: {ex.Message}");
+            }
+        }
     }
 }
