@@ -1,4 +1,4 @@
-﻿using HoteliersAssignment;
+﻿using HotelliersAssignment;
 using HotelliersAssignment.Properties;
 using System;
 using System.Collections.Generic;
@@ -29,20 +29,26 @@ namespace HotelliersAssignment
 
     // Method to control access to the class. It checks if an instance has been created.
     // If it hasn't, it creates it; otherwise, it returns the existing instance.
-    public static ClientDatabase GetInstance()
-    {
-        // check if an instance of the class has already been created.
-        if (ClientDB == null)
+    public static ClientDatabase Instance
         {
-            ClientDB = new ClientDatabase();
+            get
+            {
+                // check if an instance of the class has already been created.
+                if (ClientDB == null)
+                {
+                    ClientDB = new ClientDatabase();
+                }
+                return ClientDB;
+            }
         }
-        return ClientDB;
-    }
 
-    // Business logic would be here.
 
-    // Example method to add a client to the database
-    public void AddClient(Client client)
+
+        /// <summary>
+        /// Method to add a client to the database
+        /// </summary>
+        /// <param name="client">The client to add</param>
+        public void AddClient(Client client)
     {
         AllClients.Add(client);
 

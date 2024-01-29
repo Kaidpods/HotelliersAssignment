@@ -1,24 +1,28 @@
-﻿using HoteliersAssignment;
+﻿using HotelliersAssignment;
 using HotelliersAssignment.Properties;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HotelliersAssignment
 {
     public partial class Hoteliers : Form
     {
-        ClientDatabase Cdatabase = ClientDatabase.GetInstance();
         private bool userClosing = false;
         bool expand = false;
+        private string multPath = "BookedMultRooms.txt";
+        private string singPath = "BookedSingleRooms.txt";
         /// <summary>
         /// Total number of people selected
         /// </summary>
@@ -35,8 +39,6 @@ namespace HotelliersAssignment
             BookStartDate.MinDate = DateTime.UtcNow;
             BookEndDate.MinDate = DateTime.UtcNow.AddDays(1);
 
-            Cdatabase.createFile();
-            
 
         }
 
@@ -148,7 +150,7 @@ namespace HotelliersAssignment
             RoomNum = int.Parse(RoomTxt.Text);
             RoomNum++;
             RoomTxt.Text = RoomNum.ToString();
-            
+
         }
 
         private void IncAAdult_Click(object sender, EventArgs e)
@@ -246,7 +248,7 @@ namespace HotelliersAssignment
         private void RoomPersonCheck_Changed(object sender, EventArgs e)
         {
             StringBuilder BtnText = new StringBuilder();
-            
+
             totalP = AdultNum + ChildNum + InfantNum;
 
             if (RoomNum > 0)
@@ -265,9 +267,9 @@ namespace HotelliersAssignment
             {
                 AdultTxt.Text = NumberValidation(AdultNum + 1).ToString();
             }
-            if (ChildNum > 0) 
+            if (ChildNum > 0)
             {
-                BtnText.Append(ChildTxt.Text + " Children | ");     
+                BtnText.Append(ChildTxt.Text + " Children | ");
             }
             else if (NegativeValidation(ChildTxt.Text))
             {
@@ -323,7 +325,7 @@ namespace HotelliersAssignment
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+
         private void Address_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -342,35 +344,40 @@ namespace HotelliersAssignment
                     AddressErrorProv.SetError(textBox, "Full name is prefered");
                     return;
                 }
-            }else if (textBox == PostcodeTxt)
+            }
+            else if (textBox == PostcodeTxt)
             {
                 if (!IsValidUKPostcode(textBox.Text))
                 {
                     AddressErrorProv.SetError(textBox, "Use a proper postcode");
                     return;
                 }
-            }else if (textBox == StrNumTxt)
+            }
+            else if (textBox == StrNumTxt)
             {
                 if (!IsValidStreetNumber(textBox.Text))
                 {
                     AddressErrorProv.SetError(textBox, "Use a proper street number");
                     return;
                 }
-            }else if (textBox == StrTxt)
+            }
+            else if (textBox == StrTxt)
             {
                 if (!IsValidStrCounty(textBox.Text) || textBox.Text.Length > 20)
                 {
                     AddressErrorProv.SetError(textBox, "Use a proper street name");
                     return;
                 }
-            }else if (textBox == CountyTxt)
+            }
+            else if (textBox == CountyTxt)
             {
                 if (!IsValidStrCounty(textBox.Text) || textBox.Text.Length > 20)
                 {
                     AddressErrorProv.SetError(textBox, "Use a proper county name");
                     return;
                 }
-            }else if (textBox == TelephoneTxt)
+            }
+            else if (textBox == TelephoneTxt)
             {
                 if (!IsValidUKPhoneNumber(textBox.Text))
                 {
@@ -470,6 +477,30 @@ namespace HotelliersAssignment
             return allFieldsFilled;
         }
 
+        //private bool ValidateRoomTextFields(Control container)
+        //{
+        //    bool allFieldsFilled = true;
+
+        //    if (!userClosing)
+        //    {
+        //        foreach (Control control in container.Controls)
+        //        {
+        //            if (control is TextBox textBox)
+        //            {
+        //                if (textBox.Name == ChildTxt )
+        //                {
+        //                }
+        //                else
+        //                {
+        //                    AddressErrorProv.SetError(textBox, ""); // Clear error
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return allFieldsFilled;
+        //}
+
         private void Hoteliers_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -491,24 +522,127 @@ namespace HotelliersAssignment
             {
                 string NoID = "null";
                 Client client1 = new Client(NoID, CustTxt.Text, TelephoneTxt.Text, address1);
-                Cdatabase.AddClient(client1);
+                Program.clientDatabase.AddClient(client1);
             }
         }
-        private void BookingCreation()
+        private bool BookingValidation()
         {
             if (totalP > 5 * RoomNum)
             {
                 MessageBox.Show("Too many people for the amount of rooms", "Reduce amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else
+                return false;
+            }
+            else
             {
-
+                return true;
             }
         }
+        private void BookingCreation()
+        {
+            List<Room> freeRooms = Program.roomDatabase.GetFreeRooms();
+            List<Room> roomsToBook = new List<Room>();
+            List<Room> roomsToBook2 = new List<Room>();
+            int check = 0;
+            if (freeRooms.Count >= RoomNum)
+            {
+                int[] peoplePerRoom = SplitNumber(totalP, RoomNum);
+
+
+                foreach (int people in peoplePerRoom)
+                {
+                    foreach (Room room in freeRooms)
+                    {
+                        if (check != RoomNum)
+                        {
+                            if (room.Capacity == people)
+                            {
+                                check++;
+                                roomsToBook.Add(room);
+                            }
+                            else if (room.Capacity > people)
+                            {
+                                roomsToBook2.Add(room);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (check == RoomNum)
+                    {
+                        check = 0;
+                        break;
+                    }
+                }
+                //Second round incase not all rooms were selected
+
+                foreach (int people in peoplePerRoom)
+                {
+                    foreach (Room room in roomsToBook2)
+                    {
+                        if (check != RoomNum)
+                        {
+                            if (room.Capacity >= people)
+                            {
+                                roomsToBook.Add(room);
+                            }
+                        }
+                        else
+                        {
+                            check = 0;
+                            break;
+                        }
+                    }
+                    if (check == RoomNum)
+                    {
+                        break;
+                    }
+                }
+            }
+            int dayspan = DateTime.Compare(BookEndDate.Value, BookStartDate.Value);
+            if (roomsToBook.Count == 1)
+            {
+                Booking booking = new Booking(CustTxt.Text, roomsToBook.First(), BookStartDate.Value, dayspan, Booking.BookingType.Bedroom, int.Parse(AdultTxt.Text), int.Parse(ChildTxt.Text), int.Parse(InfantTxt.Text));
+                File.WriteAllText(singPath, booking.ToString());
+                Program.bookingDatabase.AddBooking(booking);
+            }
+            else
+            {
+                Booking booking = new Booking(CustTxt.Text, roomsToBook, BookStartDate.Value, dayspan, Booking.BookingType.Bedroom, int.Parse(AdultTxt.Text), int.Parse(ChildTxt.Text), int.Parse(InfantTxt.Text));
+
+                File.WriteAllText(multPath, booking.ToStringMult());
+                Program.bookingDatabase.AddMultBooking(booking);
+            }
+
+
+        }
+
+        static int[] SplitNumber(int number, int parts)
+        {
+            int[] result = new int[parts];
+            int quotient = number / parts;
+            int remainder = number % parts;
+
+            for (int i = 0; i < parts; i++)
+            {
+                result[i] = quotient;
+                if (remainder > 0)
+                {
+                    result[i]++;
+                    remainder--;
+                }
+            }
+
+            return result;
+        }
+
+
 
         private void BookingSubBtn_Click(object sender, EventArgs e)
         {
             // Trigger validation for the tab control
-            if (ValidateAllTextFields(tabControl1.SelectedTab))
+            if (ValidateAllTextFields(tabControl1.SelectedTab) & BookingValidation())
             {
                 ClientCreation();
                 BookingCreation();
@@ -518,7 +652,6 @@ namespace HotelliersAssignment
                 MessageBox.Show("Please fill in all the required fields on the current tab.", "Empty Text Box Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        
     }
 }
+        

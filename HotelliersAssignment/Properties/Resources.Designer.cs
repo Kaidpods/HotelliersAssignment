@@ -61,6 +61,38 @@ namespace HotelliersAssignment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 101,Single,High,40,1
+        ///102,Single,High,40,1
+        ///103,Single,High,40,1
+        ///104,Single,High,40,1
+        ///105,Single,High,40,1
+        ///106,Double,High,50,2
+        ///107,Double,High,50,2
+        ///108,Double,High,50,2
+        ///109,Double,High,50,2
+        ///110,Double,High,50,2
+        ///111,Double,High,50,2
+        ///112,Double,High,50,2
+        ///113,Double,High,50,2
+        ///114,Double,High,50,2
+        ///115,Double,High,50,2
+        ///116,Double,High,50,2
+        ///117,Double,High,50,2
+        ///118,Double,High,50,2
+        ///201,Double,High,50,2
+        ///202,Double,High,50,2
+        ///203,Double,High,50,2
+        ///204,Double,High,50,2
+        ///205,Double,High,50,2
+        ///206,Do [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AllRooms {
+            get {
+                return ResourceManager.GetString("AllRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icons8_minus_24 {

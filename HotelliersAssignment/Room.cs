@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HoteliersAssignment
+namespace HotelliersAssignment
 {
     public class Room
     {
@@ -13,7 +13,8 @@ namespace HoteliersAssignment
             Single,
             Twin,
             Triple,
-            Family
+            Family,
+            ConferenceRoom
         }
 
         public enum Season
@@ -23,11 +24,6 @@ namespace HoteliersAssignment
             Low
         }
 
-        public enum BookingType
-        {
-            Bedroom,
-            ConferenceRoom
-        }
 
         public string RoomNumber { get; set; }
         public RoomType Type { get; set; }
@@ -35,6 +31,7 @@ namespace HoteliersAssignment
         public decimal Rate { get; private set; }
         public int Capacity { get; private set; }
         public bool PresentationEquipmentAvailable { get; set; }
+        public bool IsOccupied { get; set; }
 
         public Room(string roomNumber, RoomType type, Season season, decimal rate, int capacity)
         {
@@ -44,6 +41,7 @@ namespace HoteliersAssignment
             Rate = rate;
             Capacity = capacity;
             PresentationEquipmentAvailable = false;
+            IsOccupied = false;
         }
 
         public decimal CalculateCost(int numberOfDays)
@@ -52,6 +50,6 @@ namespace HoteliersAssignment
             return numberOfDays * Rate;
         }
 
-       
+
     }
 }

@@ -60,7 +60,7 @@ namespace HotelliersAssignment
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dropDownPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.RoomPersonPnl = new System.Windows.Forms.Panel();
             this.dropRoomBtn = new System.Windows.Forms.Button();
             this.RoomLbl = new System.Windows.Forms.Label();
             this.IncDRoom = new System.Windows.Forms.Button();
@@ -99,7 +99,7 @@ namespace HotelliersAssignment
             this.StaffLogTab.SuspendLayout();
             this.BookingTab.SuspendLayout();
             this.dropDownPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.RoomPersonPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UsernameErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).BeginInit();
@@ -411,7 +411,7 @@ namespace HotelliersAssignment
             // 
             this.dropDownPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(186)))), ((int)(((byte)(175)))));
             this.dropDownPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dropDownPanel.Controls.Add(this.panel1);
+            this.dropDownPanel.Controls.Add(this.RoomPersonPnl);
             this.dropDownPanel.Controls.Add(this.RoomLbl);
             this.dropDownPanel.Controls.Add(this.IncDRoom);
             this.dropDownPanel.Controls.Add(this.RoomTxt);
@@ -436,14 +436,14 @@ namespace HotelliersAssignment
             this.dropDownPanel.Size = new System.Drawing.Size(200, 30);
             this.dropDownPanel.TabIndex = 12;
             // 
-            // panel1
+            // RoomPersonPnl
             // 
-            this.panel1.Controls.Add(this.dropRoomBtn);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 30);
-            this.panel1.TabIndex = 0;
+            this.RoomPersonPnl.Controls.Add(this.dropRoomBtn);
+            this.RoomPersonPnl.Location = new System.Drawing.Point(0, 0);
+            this.RoomPersonPnl.Margin = new System.Windows.Forms.Padding(0);
+            this.RoomPersonPnl.Name = "RoomPersonPnl";
+            this.RoomPersonPnl.Size = new System.Drawing.Size(200, 30);
+            this.RoomPersonPnl.TabIndex = 0;
             // 
             // dropRoomBtn
             // 
@@ -819,7 +819,7 @@ namespace HotelliersAssignment
             this.BookingTab.PerformLayout();
             this.dropDownPanel.ResumeLayout(false);
             this.dropDownPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.RoomPersonPnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UsernameErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartDateErr)).EndInit();
@@ -857,7 +857,7 @@ namespace HotelliersAssignment
         private System.Windows.Forms.FlowLayoutPanel dropDownPanel;
         private System.Windows.Forms.Label EndDateLbl;
         private System.Windows.Forms.Button dropRoomBtn;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel RoomPersonPnl;
         private System.Windows.Forms.Timer DropTimer;
         private System.Windows.Forms.Label RoomLbl;
         private System.Windows.Forms.Button IncDRoom;
