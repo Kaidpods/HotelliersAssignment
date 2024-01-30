@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HotelliersAssignment;
 
 namespace HotelliersAssignment.UnitTest
 {
@@ -20,12 +14,11 @@ namespace HotelliersAssignment.UnitTest
             // Act
             hoteliersForm.GetStaffCredentials();
 
-
-
             // Assert
             Assert.IsNotNull(hoteliersForm.staffUser);
             Assert.IsNotNull(hoteliersForm.staffPass);
         }
+
         [TestMethod]
         public void ListBoxGeneration_PopulateListBoxWithBookings_Success()
         {
@@ -41,6 +34,5 @@ namespace HotelliersAssignment.UnitTest
             Assert.AreEqual(Program.bookingDatabase.GetBookings().Count, hoteliersForm.listBox1.Items.Count);
             // Add more specific assertions based on the expected booking details
         }
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelliersAssignment
 {
@@ -24,7 +22,6 @@ namespace HotelliersAssignment
         public int Children { get; set; }
         public int Infants { get; set; }
         private bool isMulti;
-
 
         public Booking(string customerName, Room room, DateTime startDate, int duration, BookingType type, int adults, int children, int infants)
         {
@@ -62,6 +59,7 @@ namespace HotelliersAssignment
             string roomsInfo = string.Join(";", ListRoom.Select(room => room.RoomNumber)); // Assuming Room.ToString() provides necessary room information
             return $"{CustomerName},{roomsInfo},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}";
         }
+
         public override string ToString()
         {
             return $"{CustomerName},{Room.RoomNumber},{StartDate},{Duration} days,{Type},{Adults},{Children},{Infants}";

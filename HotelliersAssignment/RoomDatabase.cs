@@ -1,13 +1,6 @@
 ﻿using HotelliersAssignment.Properties;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HotelliersAssignment
 {
@@ -79,7 +72,6 @@ namespace HotelliersAssignment
                 }
                 else
                 {
-                    
                 }
             }
             catch (Exception ex)

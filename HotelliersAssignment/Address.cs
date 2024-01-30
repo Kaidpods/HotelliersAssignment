@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelliersAssignment
 {
@@ -22,6 +18,7 @@ namespace HotelliersAssignment
             this.county = county;
             this.postcode = postcode;
         }
+
         public override String ToString()
         {
             return houseNumber +

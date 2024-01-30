@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelliersAssignment
@@ -13,6 +9,7 @@ namespace HotelliersAssignment
         private string Name;
         private string PhoneNumber;
         private Address Address;
+
         public Client(string PrefCustId, string Name, string PhoneNumber, Address Address)
         {
             this.PrefCustID = PrefCustId;
@@ -25,10 +22,9 @@ namespace HotelliersAssignment
         {
             string tempAddress = this.Address.ToString();
 
-                string test = (PrefCustID + ", " + Name + ", " + PhoneNumber + ", " + tempAddress);
-                MessageBox.Show(test);
-                return test;
-            
+            string test = (PrefCustID + ", " + Name + ", " + PhoneNumber + ", " + tempAddress);
+            MessageBox.Show(test);
+            return test;
         }
     }
 }

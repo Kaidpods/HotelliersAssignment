@@ -1,38 +1,31 @@
-﻿using HotelliersAssignment;
-using HotelliersAssignment.Properties;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace HotelliersAssignment
 {
     public partial class Hoteliers : Form
     {
         private bool userClosing = false;
-        bool expand = false;
+        private bool expand = false;
         private string multPath = "BookedMultRooms.txt";
         private string singPath = "BookedSingleRooms.txt";
         private string encryptedFile = "encrypted.dat";
         private string password = "MySecretPassword";
         public List<string> staffUser = new List<string>();
         public List<string> staffPass = new List<string>();
+
         /// <summary>
         /// Total number of people selected
         /// </summary>
-        int totalP = 0;
+        private int totalP = 0;
+
         public Hoteliers()
         {
             InitializeComponent();
@@ -45,16 +38,10 @@ namespace HotelliersAssignment
 
             BookStartDate.MinDate = DateTime.UtcNow.AddDays(1);
             BookEndDate.MinDate = DateTime.UtcNow.AddDays(2);
-            
-
-
-
-
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void StaffLoginBtn_Click(object sender, EventArgs e)
@@ -70,7 +57,8 @@ namespace HotelliersAssignment
                 {
                     PasswordErr.SetError(StaffPasswordInput, "Can't be null or empty");
                 }
-                for (int i = 0; i < staffUser.Count; i++) {
+                for (int i = 0; i < staffUser.Count; i++)
+                {
                     if (StaffPasswordInput.Text.Equals(staffPass.ElementAt(i)) & StaffUserInput.Text.Equals(staffUser.ElementAt(i)))
                     {
                         complete = true;
@@ -86,7 +74,6 @@ namespace HotelliersAssignment
                 }
                 break;
                 //Add implementation of csv usernames
-                
             }
         }
 
@@ -113,6 +100,7 @@ namespace HotelliersAssignment
                 StaffUserInput.ForeColor = Color.Black;
             }
         }
+
         private void StaffPasswordInput_Enter(Object sender, EventArgs e)
         {
             if (StaffPasswordInput.Text == "Password")
@@ -170,17 +158,17 @@ namespace HotelliersAssignment
         }
 
         //Room number and person numbers
-        int RoomNum = 1;
-        int AdultNum = 1;
-        int ChildNum;
-        int InfantNum;
+        private int RoomNum = 1;
+
+        private int AdultNum = 1;
+        private int ChildNum;
+        private int InfantNum;
 
         private void IncARoom_Click(object sender, EventArgs e)
         {
             RoomNum = int.Parse(RoomTxt.Text);
             RoomNum++;
             RoomTxt.Text = RoomNum.ToString();
-
         }
 
         private void IncAAdult_Click(object sender, EventArgs e)
@@ -189,12 +177,14 @@ namespace HotelliersAssignment
             AdultNum++;
             AdultTxt.Text = AdultNum.ToString();
         }
+
         private void IncAChild_Click(object sender, EventArgs e)
         {
             ChildNum = int.Parse(ChildTxt.Text);
             ChildNum++;
             ChildTxt.Text = ChildNum.ToString();
         }
+
         private void IncAInfant_Click(object sender, EventArgs e)
         {
             InfantNum = int.Parse(InfantTxt.Text);
@@ -247,6 +237,7 @@ namespace HotelliersAssignment
                 return input;
             }
         }
+
         private int RoomAdultValidation(int input)
         {
             if (input < 1)
@@ -274,7 +265,7 @@ namespace HotelliersAssignment
             }
         }
 
-        //Handles the change of text in any of the room,adult, child and etc text boxes 
+        //Handles the change of text in any of the room,adult, child and etc text boxes
         private void RoomPersonCheck_Changed(object sender, EventArgs e)
         {
             StringBuilder BtnText = new StringBuilder();
@@ -287,7 +278,7 @@ namespace HotelliersAssignment
             }
             else if (NegativeValidation(RoomTxt.Text))
             {
-                RoomTxt.Text = NumberValidation(RoomNum + 1).ToString();
+                RoomTxt.Text = (NumberValidation(RoomNum) + 1).ToString();
             }
             if (AdultNum > 0)
             {
@@ -295,7 +286,7 @@ namespace HotelliersAssignment
             }
             else if (NegativeValidation(AdultTxt.Text))
             {
-                AdultTxt.Text = NumberValidation(AdultNum + 1).ToString();
+                AdultTxt.Text = (NumberValidation(AdultNum)+ 1).ToString();
             }
             if (ChildNum > 0)
             {
@@ -324,7 +315,17 @@ namespace HotelliersAssignment
             {
                 // Shows a MessageBox if the input is not an integer
                 MessageBox.Show($"Please enter a valid integer in {textBox.Name}.", "Input Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox.Text = "0";
+                if (textBox.Name == RoomTxt.Name || textBox.Name == AdultTxt.Name)
+                {
+                    textBox.Text = "1";
+
+                }
+                else
+                {
+                    textBox.Text = "0";
+                }
+                
+                
             }
         }
 
@@ -432,7 +433,7 @@ namespace HotelliersAssignment
         /// </summary>
         /// <param name="postcode"></param>
         /// <returns></returns>
-        static bool IsValidUKPostcode(string postcode)
+        private static bool IsValidUKPostcode(string postcode)
         {
             // Regular expression for UK postcode format
             string pattern = @"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$";
@@ -446,7 +447,7 @@ namespace HotelliersAssignment
         /// </summary>
         /// <param name="streetNumber"></param>
         /// <returns></returns>
-        static bool IsValidStreetNumber(string streetNumber)
+        private static bool IsValidStreetNumber(string streetNumber)
         {
             // Basic example: Street number must be a positive integer
             return Regex.IsMatch(streetNumber, @"^\d+$");
@@ -457,7 +458,7 @@ namespace HotelliersAssignment
         /// </summary>
         /// <param name="streetName">String for the street name or county</param>
         /// <returns></returns>
-        static bool IsValidStrCounty(string streetName)
+        private static bool IsValidStrCounty(string streetName)
         {
             // Basic example: Street name must start with an uppercase letter and can include letters, spaces, and hyphens
             return Regex.IsMatch(streetName, @"^[A-Z][A-Za-z\s\-]+$");
@@ -468,7 +469,7 @@ namespace HotelliersAssignment
         /// </summary>
         /// <param name="phoneNumber">Number to be checked</param>
         /// <returns></returns>
-        static bool IsValidUKPhoneNumber(string phoneNumber)
+        private static bool IsValidUKPhoneNumber(string phoneNumber)
         {
             // Basic example: UK phone number format with or without spaces
             string pattern = @"^(?:(?:\+44)|(?:0))(?:\s?\d{5}\s?\d{5}|\s?\d{4}\s?\d{6}|\s?\d{3}\s?\d{7}|\s?\d{10})$";
@@ -514,7 +515,6 @@ namespace HotelliersAssignment
                 // Set the flag indicating that the user is closing the form
                 userClosing = true;
                 MessageBox.Show("Hope you enjoyed using the application!", "Goodbye!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
         }
 
@@ -531,6 +531,7 @@ namespace HotelliersAssignment
                 Program.clientDatabase.AddClient(client1);
             }
         }
+
         private bool BookingValidation()
         {
             if (totalP > 5 * RoomNum)
@@ -543,6 +544,7 @@ namespace HotelliersAssignment
                 return true;
             }
         }
+
         private void BookingCreation()
         {
             List<Room> freeRooms = Program.roomDatabase.GetFreeRooms();
@@ -552,7 +554,6 @@ namespace HotelliersAssignment
             if (freeRooms.Count >= RoomNum)
             {
                 int[] peoplePerRoom = SplitNumber(totalP, RoomNum);
-
 
                 foreach (int people in peoplePerRoom)
                 {
@@ -620,11 +621,9 @@ namespace HotelliersAssignment
                 WriteBookingsToFile(multPath, booking.ToStringMult());
                 Program.bookingDatabase.AddMultBooking(booking);
             }
-
-
         }
 
-        static int[] SplitNumber(int number, int parts)
+        private static int[] SplitNumber(int number, int parts)
         {
             int[] result = new int[parts];
             int quotient = number / parts;
@@ -642,6 +641,7 @@ namespace HotelliersAssignment
 
             return result;
         }
+
         public void WriteBookingsToFile(string filePath, string toWrite)
         {
             try
@@ -656,7 +656,6 @@ namespace HotelliersAssignment
             {
                 Console.WriteLine($"Error writing bookings to file: {ex.Message}");
             }
-            
         }
 
         public void ClearAllFields(Control container)
@@ -677,6 +676,7 @@ namespace HotelliersAssignment
 
             FileEncryptor.EncryptFile(inputFile, encryptedFile, password);
         }
+
         /// <summary>
         /// Uses the decryption class to acquire staff details from an encrypted file
         /// </summary>
@@ -690,8 +690,8 @@ namespace HotelliersAssignment
                 {
                     staffUser.Add(decryptedPart);
                     index++;
-
-                }else if (index % 2 == 0)
+                }
+                else if (index % 2 == 0)
                 {
                     staffUser.Add(decryptedPart);
                     index++;
@@ -700,9 +700,7 @@ namespace HotelliersAssignment
                 {
                     staffPass.Add(decryptedPart);
                 }
-                
             }
-            
         }
 
         private void BookingSubBtn_Click(object sender, EventArgs e)
@@ -730,7 +728,8 @@ namespace HotelliersAssignment
             {
                 foreach (Booking booking in Program.bookingDatabase.GetBookings())
                 {
-                    if (booking.IsMulti() == true){
+                    if (booking.IsMulti() == true)
+                    {
                         if (listBox1.GetItemText(listBox1.SelectedItem) == booking.ToStringMult())
                         {
                             foreach (Room room in booking.ListRoom)
@@ -752,12 +751,9 @@ namespace HotelliersAssignment
                             break;
                         }
                     }
-
                 }
                 ListBoxGeneration();
             }
         }
-
     }
 }
-        

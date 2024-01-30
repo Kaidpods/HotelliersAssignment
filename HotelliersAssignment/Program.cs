@@ -1,5 +1,4 @@
-﻿using HotelliersAssignment;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace HotelliersAssignment
 {
@@ -11,8 +10,7 @@ namespace HotelliersAssignment
         private static string multPath = ("BookedMultRooms.txt");
         private static string singPath = ("BookedSingleRooms.txt");
 
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             clientDatabase.createFile();
             roomDatabase.ReadFileRooms();
@@ -20,8 +18,6 @@ namespace HotelliersAssignment
             bookingDatabase.LoadBookingSingFromFile(singPath);
             Form MyForm = new Hoteliers();
             Application.Run(MyForm);
-            
         }
-
     }
 }

@@ -2,16 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelliersAssignment
 {
     public class FileEncryptor
     {
-        static byte[] testSalt = Resources.test;
+        private static byte[] testSalt = Resources.test;
+
         public static void EncryptFile(string inputFile, string outputFile, string password)
         {
             try
@@ -104,6 +103,7 @@ namespace HotelliersAssignment
                 Console.WriteLine($"Decryption and encryption failed: {ex.Message}");
             }
         }
+
         private static void EncryptStringsToFile(string outputFile, string password, params string[] data)
         {
             try
@@ -145,6 +145,7 @@ namespace HotelliersAssignment
             }
             return salt;
         }
+
         public static void GenerateSaltToFile(string outputFile)
         {
             try
@@ -158,6 +159,7 @@ namespace HotelliersAssignment
                 Console.WriteLine($"Error generating and saving salt: {ex.Message}");
             }
         }
+
         public static byte[] ReadSaltFromFile(string inputFile)
         {
             try
@@ -193,8 +195,5 @@ namespace HotelliersAssignment
                 return null;
             }
         }
-
-
-
     }
 }
