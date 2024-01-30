@@ -52,21 +52,6 @@ namespace HotelliersAssignment
             isMulti = true;
         }
 
-        public void Book()
-        {
-            // Perform booking logic based on the provided scenario
-            // For simplicity, this example just prints information
-            Console.WriteLine($"Booking {Type} for {CustomerName}.");
-            Console.WriteLine($"Room Number: {Room.RoomNumber}, Type: {Room.Type}, Start Date: {StartDate.ToShortDateString()}, Duration: {Duration} days.");
-
-            if (Type == BookingType.ConferenceRoom)
-            {
-                Console.WriteLine($"Room Capacity: {Room.Capacity}, Presentation Equipment: {Room.PresentationEquipmentAvailable}");
-            }
-
-            // Add logic for checking availability, handling payments, etc.
-        }
-
         public bool IsMulti()
         {
             return isMulti;

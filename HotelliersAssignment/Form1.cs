@@ -27,8 +27,8 @@ namespace HotelliersAssignment
         private string singPath = "BookedSingleRooms.txt";
         private string encryptedFile = "encrypted.dat";
         private string password = "MySecretPassword";
-        private List<string> staffUser = new List<string>();
-        private List<string> staffPass = new List<string>();
+        public List<string> staffUser = new List<string>();
+        public List<string> staffPass = new List<string>();
         /// <summary>
         /// Total number of people selected
         /// </summary>
@@ -36,15 +36,15 @@ namespace HotelliersAssignment
         public Hoteliers()
         {
             InitializeComponent();
-            getStaffCredentials();
+            GetStaffCredentials();
             tabControl1.TabPages.Remove(StaffTab);
             StaffUserInput.Text = "Username";
             StaffUserInput.ForeColor = Color.LightGray;
             StaffPasswordInput.Text = "Password";
             StaffPasswordInput.ForeColor = Color.LightGray;
 
-            BookStartDate.MinDate = DateTime.UtcNow;
-            BookEndDate.MinDate = DateTime.UtcNow.AddDays(1);
+            BookStartDate.MinDate = DateTime.UtcNow.AddDays(1);
+            BookEndDate.MinDate = DateTime.UtcNow.AddDays(2);
             
 
 
@@ -90,7 +90,7 @@ namespace HotelliersAssignment
             }
         }
 
-        private void ListBoxGeneration()
+        public void ListBoxGeneration()
         {
             foreach (Booking booking in Program.bookingDatabase.GetBookings())
             {
@@ -659,7 +659,7 @@ namespace HotelliersAssignment
             
         }
 
-        public void clearAllFields(Control container)
+        public void ClearAllFields(Control container)
         {
             foreach (Control control in container.Controls)
             {
@@ -670,19 +670,39 @@ namespace HotelliersAssignment
             }
         }
 
-        public void encryptFile()
+        public void EncryptFile()
         {
             string encryptedFile = "encrypted.dat";
             string inputFile = "Password.csv";
 
             FileEncryptor.EncryptFile(inputFile, encryptedFile, password);
         }
-        public void getStaffCredentials()
+        /// <summary>
+        /// Uses the decryption class to acquire staff details from an encrypted file
+        /// </summary>
+        public void GetStaffCredentials()
         {
             string[] decryptedParts = FileEncryptor.DecryptFileAndSplit(encryptedFile, password);
+            int index = 0;
+            foreach (string decryptedPart in decryptedParts)
+            {
+                if (index == 0)
+                {
+                    staffUser.Add(decryptedPart);
+                    index++;
 
-            staffUser.Add(decryptedParts[0]);
-            staffPass.Add(decryptedParts[1]);
+                }else if (index % 2 == 0)
+                {
+                    staffUser.Add(decryptedPart);
+                    index++;
+                }
+                else
+                {
+                    staffPass.Add(decryptedPart);
+                }
+                
+            }
+            
         }
 
         private void BookingSubBtn_Click(object sender, EventArgs e)
@@ -692,7 +712,7 @@ namespace HotelliersAssignment
             {
                 ClientCreation();
                 BookingCreation();
-                clearAllFields(tabControl1.SelectedTab);
+                ClearAllFields(tabControl1.SelectedTab);
             }
             else
             {
@@ -700,7 +720,7 @@ namespace HotelliersAssignment
             }
         }
 
-        private void removeBookingBtn_Click(object sender, EventArgs e)
+        private void RemoveBookingBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Are you sure you want to delete the selected booking?", "Deletion",
                                  MessageBoxButtons.YesNo,
@@ -737,6 +757,7 @@ namespace HotelliersAssignment
                 ListBoxGeneration();
             }
         }
+
     }
 }
         

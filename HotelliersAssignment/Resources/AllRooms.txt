@@ -33,3 +33,6 @@
 215,Family,High,70,5
 216,Family,High,70,5
 217,Family,High,70,5
+C01,Conference,High,100,1000
+C02,Conference,High,90,500
+C03,Conference,High,90,500
